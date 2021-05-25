@@ -232,65 +232,6 @@ local function itemss()
 	end
 	setfenv(itemss, dark_addon.environment.env)
 	
-local function cvarss()
-if not GetCVar("DropCombat") then
-return RegisterCVar("DropCombat", 2)
-end
-
-if player.buff(SB.VanishBuff).up or player.buff(SB.Stealth)  then
-SetCVar("DropCombat", 0)
-end
-
-if not player.buff(SB.VanishBuff).up or player.buff(SB.Stealth) then
-SetCVar("DropCombat", 1)
-end
-end
-setfenv(cvarss, dark_addon.environment.env)
-
-local function kickcs()
-local intpercent = math.random(50,100)
-         
-if target.alive and target.enemy and player.alive then	
-	if toggle("pveinterrupt", false) then
-	
-	if castable(SB.Kick, 'target') and -spell(Kick) == 0 and target.interrupt(intpercent, false) then
-      return cast(SB.Kick, 'target')
-    end
-
-	if castable(SB.Blind, 'target') and not castable(SB.Kick) and -spell(Blind) == 0 and target.interrupt(intpercent, false) then
-      return cast(SB.Blind, 'target')
-    end
-	
-	if castable(SB.CheapShot, 'target') and not castable(SB.Kick) and -spell(CheapShot) == 0 and target.interrupt(intpercent, false) then
-      return cast(SB.CheapShot, 'target')
-    end	
-	end
-end
-
-end
-setfenv(kickcs, dark_addon.environment.env)
-
-local function survivetest()
-if toggle("survivetest", false) then
-if player.alive then	
-
-if -player.health <= 10 then
-
-if castable(SB.Evasion) then
- return cast(SB.Evasion)
-end
-
-if castable(SB.CloakOfShadows) then
- return cast(SB.CloakOfShadows)
-end
-
-end
-
-end
-end
-
-end
-setfenv(survivetest, dark_addon.environment.env)
 
 -- local function SpellCastTest() -- private server meme
 
@@ -343,9 +284,40 @@ local function combat()
             SB.Stealth = 115191
         end
 		
-if cvarss then return end
-if kickcs then return end
-if survivetest then return end
+if not GetCVar("DropCombat") then
+return RegisterCVar("DropCombat", 2)
+end
+
+if (player.buff(SB.VanishBuff).up or player.buff(SB.Stealth).up) then
+SetCVar("DropCombat", 0)
+end
+
+if not(player.buff(SB.VanishBuff).up or player.buff(SB.Stealth).up) then
+SetCVar("DropCombat", 1)
+end
+
+
+if target.alive and target.enemy and player.alive then	
+local intpercent = math.random(50,100)
+
+	if toggle("pveinterrupt", false) then
+	
+	if castable(SB.Kick, 'target') and target.interrupt(intpercent, false) then
+      return cast(SB.Kick, 'target')
+    end
+
+	if castable(SB.Blind, 'target') and not castable(SB.Kick) and target.interrupt(intpercent, false) then
+      return cast(SB.Blind, 'target')
+    end
+	
+	if castable(SB.CheapShot, 'target') and not castable(SB.Kick) and target.interrupt(intpercent, false) then
+      return cast(SB.CheapShot, 'target')
+    end	
+	
+	end
+end
+
+
 if GetCVar("DropCombat") == '1' then 
   local ShadowSteps = dark_addon.settings.fetch("FlexDagger_ShadowSteps")
  -- local useshadowstep = dark_addon.settings.fetch('FlexDagger_useshadowstep', false)
@@ -367,11 +339,9 @@ if player.alive then
     
 
     local Evasion = dark_addon.settings.fetch("FlexDagger_Evasion", 15)
-    if not toggle("survivetest", false) then 
 	if Evasion and -player.health <= Evasion then
      return cast(SB.Evasion)
     end
-	end
 	
    local CrimsonVial = dark_addon.settings.fetch("FlexDagger_CrimsonVial", 45)
    if CrimsonVial and -player.health <= CrimsonVial then
@@ -615,10 +585,6 @@ end
 
 
 end
-
-if GetCVar("DropCombat") == '0' then
-print('Cannot Interrupt Combat!')
-end
 end
 
 local function resting()
@@ -629,8 +595,18 @@ local function resting()
         if talent(2, 2) then
             SB.Stealth = 115191
         end
-if cvarss then return end
-if survivetest then return end
+if not GetCVar("DropCombat") then
+return RegisterCVar("DropCombat", 2)
+end
+
+if (player.buff(SB.VanishBuff).up or player.buff(SB.Stealth).up) then
+SetCVar("DropCombat", 0)
+end
+
+if not(player.buff(SB.VanishBuff).up or player.buff(SB.Stealth).up) then
+SetCVar("DropCombat", 1)
+end
+
   local enemyCount = enemies.around(8)
   if enemyCount == 0 then enemyCount = 1 end
   local ShadowSteps = dark_addon.settings.fetch("FlexDagger_ShadowSteps")
@@ -666,11 +642,10 @@ if player.alive then
     
 
    local Evasion = dark_addon.settings.fetch("FlexDagger_Evasion", 15)
-    if not toggle("survivetest", false) then  
  if Evasion and -player.health <= Evasion then
     return cast(SB.Evasion)
    end
-end
+
 	
    local CrimsonVial = dark_addon.settings.fetch("FlexDagger_CrimsonVial", 45)
    if CrimsonVial and -player.health <= CrimsonVial then
@@ -699,144 +674,19 @@ end
 end
 
   
+
+
+
+-- -- test = { 314993, 310224, 284219, 294195, 294929 }
+
+-- dark_addon.rotation.spellbook.smart = {
+-- 1 = { 314993, 310224, 284219, 294195, 294929 }
+-- }
+-- local smart = dark_addon.rotation.spellbook.smart
+  -- if player.debuff(smart.1) then do stuff end
 	  
 	  
 local function interface()
-if (GetLocale() == "ruRU") then
-
- local settings = {
-    key = 'FlexDagger',
-    title = 'Subtlety',
-    width = 250,
-    height = 320,
-    resize = true,
-    show = false,
-    template = {
-      { type = 'header', text = 'Шд рога', align= 'center'},
-      { type = 'text', text = 'Рекоменд. таланты: 2 - 3 - 2 - 0 - 0 - 3 - 1/2' },
-      { type = 'rule' },
-      { type = 'text', text = 'Основные настройки' },
-	  -- { key = 'useshadowstep', type = 'checkbox', text = 'Use Shadow Step on Vanish', desc = '' },
-      { key = 'usenameplates', type = 'checkbox', text = 'ВКЛ\ВЫКЛ Nameplate (Не Реком.)', desc = 'Считает кол-в врагов через Nameplate' },
-     -- { key = 'checkbox_for_something...', type = 'checkbox', text = 'хххххххххххх', desc = 'ууууууууууу' },
-	        { type = 'rule' },
-		{ type = 'header', text = "Сейвы!", align= 'center' },
-		{ key = 'CrimsonVial', type = 'spinner', text = 'Авто Флакон', desc = 'On HP %', default = 45, min = 1, max = 100, step = 15 }, 
-		{ key = 'Evasion', type = 'spinner', text = 'Авто Ускользание', desc = 'On HP % (! Не работает пока вкл EVC !)', default = 30, min = 1, max = 100, step = 10 }, 
-		{ key = 'Feint', type = 'spinner', text = 'Авто Увертка', desc = 'On HP %', default = 30, min = 1, max = 100, step = 10 }, 				
-		
-		
-		{ type = 'rule' },		
-      { type = 'header', text = 'Настройки биндов.', align= 'center'},	  
-			{ key = 'ShadowSteps', type = 'dropdown', text = 'ШС по бинду', desc = '', default = 'alt',
-				list = {
-							{ key = 'empty', text = 'Выкл' },
-							{ key = 'control', text = 'CTRL' },
-							{ key = 'alt', text = 'ALT' },
-							{ key = 'shift', text = 'SHIFT' },
-					    } },
-
-    }
-  }
-
-  configWindow = dark_addon.interface.builder.buildGUI(settings)
-
-  dark_addon.interface.buttons.add_toggle(
-    {
-      name = "settings",
-      label = "Настройки профиля",
-      font = "dark_addon_icon",
-      on = {
-        label = dark_addon.interface.icon("cog"),
-        color = dark_addon.interface.color.cyan,
-        color2 = dark_addon.interface.color.dark_cyan
-      },
-      off = {
-        label = dark_addon.interface.icon("cog"),
-        color = dark_addon.interface.color.grey,
-        color2 = dark_addon.interface.color.dark_grey
-      },
-      callback = function(self)
-        if configWindow.parent:IsShown() then
-          configWindow.parent:Hide()
-        else
-          configWindow.parent:Show()
-        end
-      end
-    }
-  )
-  
-  
-  
-  -- dark_addon.interface.buttons.add_toggle(
-            -- {
-            -- name = "VanishAttack",
-            -- label = "Vanish to Attack",
-            -- on = {
-              -- label = "Vanish SStrike ON",
-              -- color = dark_addon.interface.color.orange,
-              -- color2 = dark_addon.interface.color.ratio(dark_addon.interface.color.dark_orange, 0.7)
-            -- },
-            -- off = {
-              -- label = "Vanish SStrike  OFF",
-              -- color = dark_addon.interface.color.red,
-              -- color2 = dark_addon.interface.color.ratio(dark_addon.interface.color.red, 0.5)
-            -- }
-          -- }
-  -- )
-  
-  
-  dark_addon.interface.buttons.add_toggle(
-            {
-            name = "Autostealth",
-            label = "Авто Инвиз",
-            on = {
-              label = "Авто Инвиз ON",
-              color = dark_addon.interface.color.orange,
-              color2 = dark_addon.interface.color.ratio(dark_addon.interface.color.dark_orange, 0.7)
-            },
-            off = {
-              label = "Авто Инвиз OFF",
-              color = dark_addon.interface.color.red,
-              color2 = dark_addon.interface.color.ratio(dark_addon.interface.color.red, 0.5)
-            }
-          }
-  )
-  dark_addon.interface.buttons.add_toggle(
-            {
-            name = "pveinterrupt",
-            label = "Кикаем всё подряд.",
-            on = {
-              label = "Пве Кик ON",
-              color = dark_addon.interface.color.orange,
-              color2 = dark_addon.interface.color.ratio(dark_addon.interface.color.dark_orange, 0.7)
-            },
-            off = {
-              label = "Пве Кик OFF",
-              color = dark_addon.interface.color.red,
-              color2 = dark_addon.interface.color.ratio(dark_addon.interface.color.red, 0.5)
-            }
-          }
-  )   
-  
-  dark_addon.interface.buttons.add_toggle(
-            {
-            name = "survivetest",
-            label = "10% HP:Ускользание -> Плащ.",
-            on = {
-              label = "EVC ON",
-              color = dark_addon.interface.color.orange,
-              color2 = dark_addon.interface.color.ratio(dark_addon.interface.color.dark_orange, 0.7)
-            },
-            off = {
-              label = "EVC OFF",
-              color = dark_addon.interface.color.red,
-              color2 = dark_addon.interface.color.ratio(dark_addon.interface.color.red, 0.5)
-            }
-          }
-  )  
-
-else 
     local settings = {
     key = 'FlexDagger',
     title = 'Subtlety',
@@ -952,25 +802,9 @@ else
           }
   )   
   
-  dark_addon.interface.buttons.add_toggle(
-            {
-            name = "survivetest",
-            label = "10% HP:Evasion -> CLOAK.",
-            on = {
-              label = "EVC ON",
-              color = dark_addon.interface.color.orange,
-              color2 = dark_addon.interface.color.ratio(dark_addon.interface.color.dark_orange, 0.7)
-            },
-            off = {
-              label = "EVC OFF",
-              color = dark_addon.interface.color.red,
-              color2 = dark_addon.interface.color.ratio(dark_addon.interface.color.red, 0.5)
-            }
-          }
-  )  
+
 end
-  
-end
+
 
 dark_addon.rotation.register({
   spec = dark_addon.rotation.classes.rogue.subtlety,
@@ -980,13 +814,3 @@ dark_addon.rotation.register({
   resting = resting,
   interface = interface
 })
-
-
-
--- -- test = { 314993, 310224, 284219, 294195, 294929 }
-
--- dark_addon.rotation.spellbook.smart = {
--- 1 = { 314993, 310224, 284219, 294195, 294929 }
--- }
--- local smart = dark_addon.rotation.spellbook.smart
-  -- if player.debuff(smart.1) then do stuff end
