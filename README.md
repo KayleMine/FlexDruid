@@ -2,6 +2,7 @@
 - Re-Writed\Writed Profiles:
 1. Priest Shadow
 3. Warrior Arms\Fury
+4. Sub rogue
 
 - CopyPasted Profiles:
 1. Restoration Dru
@@ -18,7 +19,7 @@ Status:
 5. Warrior Fury - Fine
 6. Balance - Fine
 7. Restoration - Greate
-
+8 SubR - Fine
 
 ## Macros
 - Some macro for Feral:
