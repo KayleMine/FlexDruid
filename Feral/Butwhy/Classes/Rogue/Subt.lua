@@ -29,7 +29,7 @@ SB.RecklessForce = 302917
 SB.ShurikenTornado = 277925
 SB.Gloomblade = 200758
 SB.MarkForDeath = 137619
-
+SB.CoralDebuff = 303568
 local function azer()
 local delay = 0  
   --burst essences
@@ -181,6 +181,7 @@ end
 setfenv(azer, dark_addon.environment.env)
 
 local function itemss()
+local coralstacktouse = dark_addon.settings.fetch("FlexDagger_coralstacktouse", 5)
  local Trinket13 = GetInventoryItemID("player", 13)
               local Trinket14 = GetInventoryItemID("player", 14)
 			 -- local wrist = GetInventoryItemID("player", 6)
@@ -191,43 +192,66 @@ local function itemss()
 			  local ashvanes_razor_coral = false
 		if toggle('cooldowns') then	  
 			  
-            if Trinket13 == 169311 or Trinket14 == 169311 then
-                ashvanes_razor_coral = true
-            end
+						if Trinket13 == 169311 or Trinket14 == 169311 then
+							ashvanes_razor_coral = true
+						end
 
 
 
-            --font
-            if Trinket13 == 169314 and target.time_to_die > 15 and player.buff(SB.Stealth).down and player.buff(114018).down and player.buff(256735).down and not player.moving then
-                if GetItemCooldown(Trinket13) == 0 then
-                    macro('/use 13')
-                end
+						--font
+						if ashvanes_razor_coral == true and target.time_to_die > 15 and player.buff(SB.Stealth).down and player.buff(114018).down and player.buff(256735).down and not player.moving then
+						  
+						  if GetItemCooldown(Trinket13) == 0 and not target.debuff(SB.CoralDebuff).up then
+								macro('/use 13')
+							end
+							
+						  if GetItemCooldown(Trinket14) == 0 and not target.debuff(SB.CoralDebuff).up then
+								macro('/use 14')
+							end
+				
+							
+							if target.debuff(SB.CoralDebuff).up and target.debuff(SB.CoralDebuff).count >= coralstacktouse then
+								
+							   if GetItemCooldown(Trinket13) == 0 then
+									macro('/use 13')
+								end
+							
+							   if GetItemCooldown(Trinket14) == 0 then
+									macro('/use 14')
+								end
+							
+							end
+							
 
+						
+					if not Trinket13 == 169314 or not Trinket14 == 169314 then
 
-            elseif Trinket13 ~= 169314 then
-
-                if GetItemCooldown(Trinket13) == 0 then
-                    macro('/use 13')
-                end
-            end
-            if GetItemCooldown(Trinket14) == 0 then
-                macro('/use 14')
-            end
-			
-			
-			
-	if GetItemCooldown(ring1) == 0 and not itemID == 169314 and not player.buff(SB.ShadowDance).up and not player.channeling() then
-			  macro('/use 11')
-	end
+							if GetItemCooldown(Trinket13) == 0 then
+								macro('/use 13')
+							end
+						end
+						if GetItemCooldown(Trinket14) == 0 then
+							macro('/use 14')
+						end
+						end
+						
+						
+				if GetItemCooldown(ring1) == 0 and not itemID == 169314 and not player.buff(SB.ShadowDance).up and not player.channeling() then
+						  macro('/use 11')
+				end
+				
+				
+				if GetItemCooldown(ring2) == 0 and not itemID == 169314 and not player.buff(SB.ShadowDance).up and not player.channeling() then
+						  macro('/use 12')
+				end
+				
+				if GetItemCooldown(hands) == 0 and not itemID == 169314 and not player.buff(SB.ShadowDance).up and not player.channeling() then
+						  macro('/use 7')
+				end  
 	
 	
-	if GetItemCooldown(ring2) == 0 and not itemID == 169314 and not player.buff(SB.ShadowDance).up and not player.channeling() then
-			  macro('/use 12')
-	end
 	
-	if GetItemCooldown(hands) == 0 and not itemID == 169314 and not player.buff(SB.ShadowDance).up and not player.channeling() then
-			  macro('/use 7')
-	end  
+	
 	end
 	end
 	setfenv(itemss, dark_addon.environment.env)
@@ -297,25 +321,25 @@ SetCVar("DropCombat", 1)
 end
 
 
-if target.alive and target.enemy and player.alive then	
-local intpercent = math.random(50,100)
+-- if target.alive and target.enemy and player.alive then	
+-- local intpercent = math.random(50,100)
 
-	if toggle("pveinterrupt", false) then
+	-- if toggle("pveinterrupt", false) then
 	
-	if castable(SB.Kick, 'target') and target.interrupt(intpercent, false) then
-      return cast(SB.Kick, 'target')
-    end
+	-- if castable(SB.Kick, 'target') and target.interrupt(intpercent, false) then
+      -- return cast(SB.Kick, 'target')
+    -- end
 
-	if castable(SB.Blind, 'target') and not castable(SB.Kick) and target.interrupt(intpercent, false) then
-      return cast(SB.Blind, 'target')
-    end
+	-- if castable(SB.Blind, 'target') and not castable(SB.Kick) and target.interrupt(intpercent, false) then
+      -- return cast(SB.Blind, 'target')
+    -- end
 	
-	if castable(SB.CheapShot, 'target') and not castable(SB.Kick) and target.interrupt(intpercent, false) then
-      return cast(SB.CheapShot, 'target')
-    end	
+	-- if castable(SB.CheapShot, 'target') and not castable(SB.Kick) and target.interrupt(intpercent, false) then
+      -- return cast(SB.CheapShot, 'target')
+    -- end	
 	
-	end
-end
+	-- end
+-- end
 
 
 if GetCVar("DropCombat") == '1' then 
@@ -701,6 +725,7 @@ local function interface()
       { type = 'text', text = 'General Settings' },
 	  -- { key = 'useshadowstep', type = 'checkbox', text = 'Use Shadow Step on Vanish', desc = '' },
       { key = 'usenameplates', type = 'checkbox', text = 'Show Enemy Nameplates', desc = 'Use name plates to count baddies' },
+		{ key = 'coralstacktouse', type = 'spinner', text = 'Use Coral on stacks', desc = '', default = 5, min = 1, max = 100, step = 1 },
      -- { key = 'checkbox_for_something...', type = 'checkbox', text = 'хххххххххххх', desc = 'ууууууууууу' },
 	        { type = 'rule' },
 		{ type = 'header', text = "Save Ur Ass!", align= 'center' },
