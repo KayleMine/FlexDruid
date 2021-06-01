@@ -2180,3 +2180,181 @@ TranscendenceReturn = 119996,
 Vivify = 116670,
 WhirlingDragonPunch = 152175,
 }
+
+dark_addon.rotation.spellbooks.interruptlist = {
+	-- Horrific visions start
+	HorrificVisions = { 309648, 308375, 297315, 308366, 308575, 304251, 298033, 288915 }, 
+	 -- Tainted Polymorph
+	 -- Psychic Scream
+	 -- Void Buffet
+	 -- Agonizing Torment
+	 -- Shadow Shift
+	 -- Void Quills
+	 -- Touch of the Abyss
+	 -- Horrifying
+	-- Horrific visions end
+	-- Atal'Dazar start
+
+	AtalDazar = { 255824, 253583, 253544, 253517, 256849, 259572, 250096, 255041, 279118 },
+	 -- fanatic rage
+	 -- Fiery Enchant
+	 -- bwonsamdismantle
+	 -- mending word
+	 -- dinomight
+     -- noxious-stench
+     -- wracking-pain
+     -- terrifying-screech
+     -- unstable-hex
+	-- Atal'Dazar end
+	-- Shrine of Storm start
+	ShrineOfStorm = { 268030, 274438, 268309, 268317, 276767, 268375, 267809, 268322, 267977 },
+	 -- mending-rapids
+	 -- tempest
+	-- [267818] -- slicing-blast
+	 -- unending-darkness
+	 -- rip-mind
+	 -- consuming-void
+	 -- detect-thoughts
+	 -- consume-essence
+	 -- drowned kick
+	 -- tidal surge
+	-- Shrine of Storm end
+	-- Motherload! start
+	Motherload = { 268129, 268709, 268702, 263215, 262540, 269090, 263103, 263066, 268797, 262092, 280604 },
+	 -- kajacola-refresher
+	 -- earth-shield
+	 -- furious-quake
+	 -- tectonic-barrier
+	 -- overcharge
+	 -- artillery-barrage
+	 -- Blowtorch
+	 -- TransSyrum
+	 -- EnemyToGoo
+	 -- InhaleVapors
+	 -- ice-spritzer
+	-- Motherload! end
+	-- Underrot start
+	Underrot = { 265089, 278755, 260879, 278961, 266201, 272183, 265433, 272180, 266106, 265523, 265091 },
+	 -- dark-reconstitution
+	 -- harrowing-despair
+	 -- blood-bolt
+	 -- decaying-mind
+	 -- bone-shield
+	 -- raise-dead
+	 -- withering-curse
+	 -- death-bolt
+	 -- sonic screech
+	 -- spiritdraintotem
+	 -- gift of ghuun
+	-- Underrot end
+	-- Freehold start
+	Freehold = { 257397, 258777, 257732, 257736, 256060, 257784 },
+	 -- healing-balm
+	 -- sea-spout
+	 -- shattering-bellow
+	 -- thundering-squall
+	 -- revitalizing-brew
+	 -- Frostblast
+	-- Freehold end
+	-- Waycrest Manor start
+	Waycrest = { 265368, 263891, 266035, 266036, 278551, 278474, 264050, 264520, 263943, 265407, 265876, 264105, 263959, 268278, 266225 },
+	 -- spirited-defense
+	 -- grasping-thorns
+	 -- bone-splinter
+	 -- drain-essence
+	 -- soul-fetish
+	 -- effigy-reconstruction
+	 -- infected-thorn
+	 -- severing-serpent
+	 -- etch
+	 -- dinner-bell
+	 -- ruinous-volley
+	 -- runic-mark
+	 -- soul-volley
+	 -- wracking-chord
+	 -- darkened-lightning
+	-- Waycrest Manor end
+	-- Temple of Sethraliss start
+	TempleOfSethraliss = { 265968, 263318, 261635, 261624, 265912, 272820, 268061 },
+	 -- healing-surge
+	 -- jolt
+	 -- stoneshield-potion
+	 -- greater-healing-potion
+	 -- accumulate-charge
+	 -- shock
+	 -- chain-lightning
+	-- Temple of Sethraliss end
+	-- Kings Rest start
+	KingsRest = { 270901, 267763, 270492, 267273, 269972, 270923, 269973 },
+	 -- induce-regeneration
+	 -- wretched-discharge
+	 -- hex
+	 -- poison-nova
+	 -- shadow-bolt-volley
+	 -- shadow-bolt
+	 -- deathlychill
+	-- Kings Rest end
+	-- Tol Dagor start
+	TolDagor = { 258128, 258153, 257791, 258313, 258634, 258935 },
+	 -- debilitating-shout
+	 -- watery-dome
+	 -- howling-fear
+	 -- handcuff
+	 -- fuselighter
+	 -- inner-flames
+	-- Tol Dagor end
+	-- Siege of Boralus start
+	SiegeOfBoralus = { 274569, 272571, 256957 },
+	 -- revitalizing-mist
+	 -- choking-waters
+	 -- watertight-shell
+	-- Siege of Boralus end
+	-- Battle of Dazarlor start
+	BattleOfDazarlor = { 283628, 282243, 289596, 286379, 286563, 287887, 289861, 287419 },
+	 -- Heal of the forces of the crusade, champion of the light encounter
+	 -- Apetagonize, Grong encounter
+	 -- For the King, 7th Legion Cavalier
+	 -- Pyroblast, Jade Masters encounter
+	 -- Tidal Empowerment, Brother Joseph , Stormwall Blockade encounter
+	 -- Storm's Empowerment, Sister Katherine , Stormwall Blockade encounter
+	 -- Howling Winds, Lady Jaina Proudmoore
+	 -- Angelic Renewal, Disciples Boss-Heal on Mythic Champions of Light.
+	-- Battle of Dazarlor end
+	-- Mechagon Start
+	Mechagon = { 300650, 300414, 300171, 299588, 300087, 298669, 300514, 300436, 301629, 284219, 301689, 301088, 293930, 293729 },
+	 -- Suffocating Smog, Toxic Lurkers
+	 -- Enrage, Scrapbone Grinders
+	 -- Repair Protocol, Heavy Scrapbot
+	 -- Overclock, Pistonhead Mechanic
+	 -- Repair, Pistonhead Mechanic
+	 -- Taze, Trixie Tazer
+	 -- Stoneskin, Scrapbone Shamans
+	 -- Grasping Hex, Scrapbone Shamans
+	 -- Enlarge, Mechagon Renormalizer
+	 -- Shrink, Mechagon Renormalizer
+	 -- Charged Coil, Anodized Coilbearer
+	 -- Detonate, Bomb Tonk
+	 -- Overclock, Mechagon Mechanic
+	 -- Tune Up, Mechagon Mechanic
+	-- Mechagon End
+	-- Eternal Palace Start
+	EternalPalace = { 296673, 295822, 297972, 300491, 300490 },
+	 -- Chain Lightning, Stormling
+	 -- Conductive Pulse, Azsh'ari Witch
+	 -- Chain Lightning, Aethanel, Tidemistress
+	 -- Drain Ancient Ward, Tidemistress
+	 -- Energize Ward of Power, Tidemistress
+	-- Eternal Palace End
+	-- Ny'alotha, the Waking City Start
+	Nyalotha = { 316211, 307177, 313652, 310552, 310788, 313364, 313400, 316711 }
+	 -- Terror Wave, Awakened Terror
+	 -- Void Bolt, Spellbound Ritualist
+	 -- Mind-Numbing Nova, Hivemind
+	 -- Mind Flay, Appendages Adds
+	 -- Pumping Blood, Organ of Corruption
+	 -- Mental Decay, Servant of N'Zoth
+	 -- Corrupted Mind, Corruptor Tentacle
+	 -- Mindwrack, Psychus
+	-- Ny'alotha, the Waking City End
+
+}
