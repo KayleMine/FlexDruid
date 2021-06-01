@@ -281,7 +281,7 @@ GrandMelee = 193358,
 RuthlessPrecision = 193357,
 SkullAndCrossbones = 199603,
 BladeFlurry = 13877,
-TrueBearings = 193359,
+"kickme"Bearings = 193359,
 WoundPoison = 8679,
 CheapShot = 1833,
 
@@ -317,7 +317,7 @@ GrandMelee = 193358,
 Broadside = 193356,
 SkullandCrossBones = 199603,
 BurriedTreasure = 199600,
-TrueBearings = 193359,
+"kickme"Bearings = 193359,
 
 
 
@@ -328,33 +328,39 @@ TrueBearings = 193359,
 
 dark_addon.rotation.spellbooks.warrior = {
 
-	--Arms 
+	--Warrior
 	AutoAttack = 6603,
+	Charge = 100,
+	HeroicLeap = 6544,
+	VictoryRush = 34428,
+	VictoryRushBuff = 32216,
+	RallyingCry = 97462,
 	BattleShout = 6673,
+	Pummel = 6552,
+	StormBolt = 107570,
+	ImpendingVictory = 202168,
+	SpellReflection = 216890,
+	Disarm = 236077,
+	DefensiveStance = 197690,
+	BattleStance = 212520,
+	
+	
+	--Arms 
 	Execute = 281000,
 	BerserkerRage = 18499,
 	Hamstring = 1715,
 	Bladestorm = 227847,
-	HeroicLeap = 6544,
-	Charge = 100,
 	HeroicThrow = 57755,
 	ColossusSmash = 167105,
 	IntimidatingShout = 5246,
 	DiebytheSword = 118038,
 	MortalStrike = 12294,
 	Overpower = 7384,
-	Pummel = 6552,
-	VictoryRush = 34428,
-	VictoryRushBuff = 32216,
-	RallyingCry = 97462,
 	Whirlwind = 1680,
 	Slam = 1464,
 	SweepingStrikes = 260708,
 	Skullsplitter = 260643,
-	ImpendigVicroty = 202168,
-	StormBolt = 107570,
 	Rend = 772,
-	DefensiveStance = 197690,
 	Warbreaker = 262161,
 	Cleave = 845,
 	Avatar = 107574,
@@ -363,11 +369,42 @@ dark_addon.rotation.spellbooks.warrior = {
 	WarBanner = 236320,
 	SharpenBlade = 198817,
 	Duel = 236273,
-	SpellReflection = 216890,
-	Disarm = 236077,
 	ColossusSmashDebuff = 208086,
 	DeepWoundsDebuff = 262115,
-	SuddenDeath = 29725
+	SuddenDeath = 29725,
+	
+	--Fury
+	FuriousSlash = 100130,
+	Rampage = 184367,
+	Enrage = 184361,
+	Recklessness = 1719,
+	Siegebreaker = 280772,
+	ExecuteFury = 5308,
+	Bloodthirst = 23881,
+	RagingBlow = 85288,
+	DragonRoar = 118000,
+	Bladestorm = 46924,
+	WhirlwindFury = 190411,
+	Massacre = 206315,
+	SuddenDeath = 280721,
+	RecklessAbandon = 202751,
+	AngerManagement = 152278,
+	PulverizingBlows = 275632,
+	SimmeringRage = 278757,
+	RecklessFlurry = 278758,
+	UnbridledFerocity = 288056,
+	WarMachine = 262231,
+	EndlessRage = 202296,
+	Carnage = 202922,
+	DoubleTime = 103827,
+	BoundingStride = 202163,
+	EnragedRegeneration = 184364,
+	AncestralCall = 274738,
+	Berserking = 26297,
+	BloodFury = 33697,
+	GiftoftheNaaru = 121093,
+	LightsJudgement = 255647
+
 
 }
 
@@ -453,9 +490,11 @@ dark_addon.rotation.spellbooks.azerite ={
 	
 	 WorldveinResonance1 = 295186,
 		 WorldveinResonance2 = 298628, --- Concentrate energy into the Heart of Azeroth, immediately causing 3 Lifeblood Shards to erupt from the nearby ground for 18 sec, and incease the primary stat gained from Lifeblood Shards by 300% for 18 sec.
-			 WorldveinResonance3 = 299334
+			 WorldveinResonance3 = 299334,
 
-
+LifeBindersInvocation1 = 293032,
+	LifeBindersInvocation2 = 299943,
+		LifeBindersInvocation3 = 299944
 
 }
 
@@ -713,7 +752,12 @@ dark_addon.rotation.spellbooks.repa = {
 [20066] = "repentance" --pal
 }
 
-
+-- <copypaste Inside flexbook.lua>
+dark_addon.rotation.spellbooks.pvpkicks = {
+    -- nu tipa privet
+    [60103] = "LavaLash",
+    [187837] = "LightningBolt"
+}
 
 
 --- Trinket boy
@@ -1240,7 +1284,7 @@ GrandMelee = 193358,
 RuthlessPrecision = 193357,
 SkullAndCrossbones = 199603,
 BladeFlurry = 13877,
-TrueBearings = 193359,
+"kickme"Bearings = 193359,
 WoundPoison = 8679,
 CheapShot = 1833,
 
@@ -1276,7 +1320,7 @@ GrandMelee = 193358,
 Broadside = 193356,
 SkullandCrossBones = 199603,
 BurriedTreasure = 199600,
-TrueBearings = 193359,
+"kickme"Bearings = 193359,
 
 
 
@@ -1761,7 +1805,7 @@ dark_addon.rotation.spellbooks.GIThunter = {
     
     BurstingShot = 186387,
     MarkedShot = 185901,
-    Trueshot = 193526,
+    "kickme"shot = 193526,
     MarkingTargets = 223138,
     HuntersMark = 185987,
     HuntersMarkMM = 257284,
@@ -2180,3 +2224,321 @@ TranscendenceReturn = 119996,
 Vivify = 116670,
 WhirlingDragonPunch = 152175,
 }
+
+
+
+
+
+	-- Horrific visions start
+-- HorrificVisions = { 309648, 308375, 297315, 308366, 308575, 304251, 298033, 288915 }
+	 -- Tainted Polymorph
+	 -- Psychic Scream
+	 -- Void Buffet
+	 -- Agonizing Torment
+	 -- Shadow Shift
+	 -- Void Quills
+	 -- Touch of the Abyss
+	 -- Horrifying
+	-- Horrific visions end
+	-- Atal'Dazar start
+	dark_addon.rotation.spellbooks.InterruptableTable = {
+    [309648] = "kickme", -- Tainted Polymorph
+	[308375] = "kickme", -- Psychic Scream
+	[297315] = "kickme", -- Void Buffet
+	[308366] = "kickme", -- Agonizing Torment
+	[308575] = "kickme", -- Shadow Shift
+	[304251] = "kickme", -- Void Quills
+	[298033] = "kickme", -- Touch of the Abyss
+	[288915] = "kickme", -- Horrifying
+	-- Horrific visions end
+	-- Atal'Dazar start
+	[255824] = "kickme", -- fanatic rage
+	[253583] = "kickme", -- Fiery Enchant
+	[253544] = "kickme", -- bwonsamdismantle
+	[253517] = "kickme", -- mending word
+	[256849] = "kickme", -- dinomight
+    [259572] = "kickme", -- noxious-stench
+    [250096] = "kickme", -- wracking-pain
+    [255041] = "kickme", -- terrifying-screech
+    [279118] = "kickme", -- unstable-hex
+	[252923] = "kickme", -- Venom Blast
+	-- Atal'Dazar end
+	-- Shrine of Storm start
+	[268030] = "kickme", -- mending-rapids
+	[274438] = "kickme", -- tempest
+	-- [267818] = "kickme", -- slicing-blast
+	[268309] = "kickme", -- unending-darkness
+	[268317] = "kickme", -- rip-mind
+	[276767] = "kickme", -- consuming-void
+	[268375] = "kickme", -- detect-thoughts
+	[267809] = "kickme", -- consume-essence
+	[268322] = "kickme", -- drowned kick
+	[267977] = "kickme", -- tidal surge
+	-- Shrine of Storm end
+	-- Motherload! start
+	[268129] = "kickme", -- kajacola-refresher
+	[268709] = "kickme", -- earth-shield
+	[268702] = "kickme", -- furious-quake
+	[263215] = "kickme", -- tectonic-barrier
+	[262540] = "kickme", -- overcharge
+	[269090] = "kickme", -- artillery-barrage
+	[263103] = "kickme", -- Blowtorch
+	[263066] = "kickme", -- TransSyrum
+	[268797] = "kickme", -- EnemyToGoo
+	[262092] = "kickme", -- InhaleVapors
+	[280604] = "kickme", -- ice-spritzer
+	-- Motherload! end
+	-- Underrot start
+	[265089] = "kickme", -- dark-reconstitution
+	[278755] = "kickme", -- harrowing-despair
+	[260879] = "kickme", -- blood-bolt
+	[278961] = "kickme", -- decaying-mind
+	[266201] = "kickme", -- bone-shield
+	[272183] = "kickme", -- raise-dead
+	[265433] = "kickme", -- withering-curse
+	[272180] = "kickme", -- death-bolt
+	[266106] = "kickme", -- sonic screech
+	[265523] = "kickme", -- spiritdraintotem
+	[265091] = "kickme", -- gift of ghuun
+	-- Underrot end
+	-- Freehold start
+	[257397] = "kickme", -- healing-balm
+	[258777] = "kickme", -- sea-spout
+	[257732] = "kickme", -- shattering-bellow
+	[257736] = "kickme", -- thundering-squall
+	[256060] = "kickme", -- revitalizing-brew
+	[257784] = "kickme", -- Frostblast
+	-- Freehold end
+	-- Waycrest Manor start
+	[265368] = "kickme", -- spirited-defense
+	[263891] = "kickme", -- grasping-thorns
+	[266035] = "kickme", -- bone-splinter
+	[266036] = "kickme", -- drain-essence
+	[278551] = "kickme", -- soul-fetish
+	[278474] = "kickme", -- effigy-reconstruction
+	[264050] = "kickme", -- infected-thorn
+	[264520] = "kickme", -- severing-serpent
+	[263943] = "kickme", -- etch
+	[265407] = "kickme", -- dinner-bell
+	[265876] = "kickme", -- ruinous-volley
+	[264105] = "kickme", -- runic-mark
+	[263959] = "kickme", -- soul-volley
+	[268278] = "kickme", -- wracking-chord
+	[266225] = "kickme", -- darkened-lightning
+	-- Waycrest Manor end
+	-- Temple of Sethraliss start
+	[265968] = "kickme", -- healing-surge
+	[263318] = "kickme", -- jolt
+	[261635] = "kickme", -- stoneshield-potion
+	[261624] = "kickme", -- greater-healing-potion
+	[265912] = "kickme", -- accumulate-charge
+	[272820] = "kickme", -- shock
+	[268061] = "kickme", -- chain-lightning
+	-- Temple of Sethraliss end
+	-- Kings Rest start
+	[270901] = "kickme", -- induce-regeneration
+	[267763] = "kickme", -- wretched-discharge
+	[270492] = "kickme", -- hex
+	[267273] = "kickme", -- poison-nova
+	[269972] = "kickme", -- shadow-bolt-volley
+	[270923] = "kickme", -- shadow-bolt
+	[269973] = "kickme", -- deathlychill
+	-- Kings Rest end
+	-- Tol Dagor start
+	[258128] = "kickme", -- debilitating-shout
+	[258153] = "kickme", -- watery-dome
+	[257791] = "kickme", -- howling-fear
+	[258313] = "kickme", -- handcuff
+	[258634] = "kickme", -- fuselighter
+	[258935] = "kickme", -- inner-flames
+	-- Tol Dagor end
+	-- Siege of Boralus start
+	[274569] = "kickme", -- revitalizing-mist
+	[272571] = "kickme", -- choking-waters
+	[256957] = "kickme", -- watertight-shell
+	-- Siege of Boralus end
+	-- Battle of Dazarlor start
+	[283628] = "kickme", -- Heal of the forces of the crusade, champion of the light encounter
+	[282243] = "kickme", -- Apetagonize, Grong encounter
+	[289596] = "kickme", -- For the King, 7th Legion Cavalier
+	[286379] = "kickme", -- Pyroblast, Jade Masters encounter
+	[286563] = "kickme", -- Tidal Empowerment, Brother Joseph , Stormwall Blockade encounter
+	[287887] = "kickme", -- Storm's Empowerment, Sister Katherine , Stormwall Blockade encounter
+	[289861] = "kickme", -- Howling Winds, Lady Jaina Proudmoore
+	[287419] = "kickme", -- Angelic Renewal, Disciples Boss-Heal on Mythic Champions of Light.
+	-- Battle of Dazarlor end
+	-- Mechagon Start
+	[300650] = "kickme", -- Suffocating Smog, Toxic Lurkers
+	[300414] = "kickme", -- Enrage, Scrapbone Grinders
+	[300171] = "kickme", -- Repair Protocol, Heavy Scrapbot
+	[299588] = "kickme", -- Overclock, Pistonhead Mechanic
+	[300087] = "kickme", -- Repair, Pistonhead Mechanic
+	[298669] = "kickme", -- Taze, Trixie Tazer
+	[300514] = "kickme", -- Stoneskin, Scrapbone Shamans
+	[300436] = "kickme", -- Grasping Hex, Scrapbone Shamans
+	[301629] = "kickme", -- Enlarge, Mechagon Renormalizer
+	[284219] = "kickme", -- Shrink, Mechagon Renormalizer
+	[301689] = "kickme", -- Charged Coil, Anodized Coilbearer
+	[301088] = "kickme", -- Detonate, Bomb Tonk
+	[293930] = "kickme", -- Overclock, Mechagon Mechanic
+	[293729] = "kickme", -- Tune Up, Mechagon Mechanic
+	-- Mechagon End
+	-- Eternal Palace Start
+	[296673] = "kickme", -- Chain Lightning, Stormling
+	[295822] = "kickme", -- Conductive Pulse, Azsh'ari Witch
+	[297972] = "kickme", -- Chain Lightning, Aethanel, Tidemistress
+	[300491] = "kickme", -- Drain Ancient Ward, Tidemistress
+	[300490] = "kickme", -- Energize Ward of Power, Tidemistress
+	-- Eternal Palace End
+	-- Ny'alotha, the Waking City Start
+	[316211] = "kickme", -- Terror Wave, Awakened Terror
+	[307177] = "kickme", -- Void Bolt, Spellbound Ritualist
+	[313652] = "kickme", -- Mind-Numbing Nova, Hivemind
+	[310552] = "kickme", -- Mind Flay, Appendages Adds
+	[310788] = "kickme", -- Pumping Blood, Organ of Corruption
+	[313364] = "kickme", -- Mental Decay, Servant of N'Zoth
+	[313400] = "kickme", -- Corrupted Mind, Corruptor Tentacle
+	[316711] = "kickme", -- Mindwrack, Psychus
+	[310842] = "kickme", -- Shadow Heal, Occult Shadowmender
+	-- Ny'alotha, the Waking City End
+	-- Old Content start
+	[191823] = "kickme", -- Furious Blast
+	[191848] = "kickme", -- Rampage
+	[192003] = "kickme", -- Blazing Nova
+	[192005] = "kickme", -- Arcane Blast
+	[192135] = "kickme", -- Bellowing Roar
+	[192288] = "kickme", -- Searing Light
+	[192563] = "kickme", -- Cleansing Flames
+	[193069] = "kickme", -- Nightmares
+	[193585] = "kickme", -- Bound
+	[194266] = "kickme", -- Void Snap
+	[194657] = "kickme", -- Soul Siphon
+	[195046] = "kickme", -- Rejuvenating Waters
+	[195129] = "kickme", -- Thundering Stomp
+	[195293] = "kickme", -- Debilitating Shout
+	[196027] = "kickme", -- Aqua Spout
+	[196175] = "kickme", -- Armorshell
+	[196392] = "kickme", -- Overcharge Mana
+	[196870] = "kickme", -- Storm
+	[196883] = "kickme", -- Spirit Blast
+	[197105] = "kickme", -- Polymorph: Fish
+	[197502] = "kickme", -- Restoration
+	[198405] = "kickme", -- Bone Chilling Scream
+	[198495] = "kickme", -- Torrent
+	[198750] = "kickme", -- Surge
+	[198931] = "kickme", -- Healing Light
+	[198934] = "kickme", -- Rune of Healing
+	[198962] = "kickme", -- Shattered Rune
+	[199514] = "kickme", -- Torrent of Souls
+	[199589] = "kickme", -- Whirlpool of Souls
+	[199726] = "kickme", -- Unruly Yell
+	[200248] = "kickme", -- Arcane Blitz
+	[200642] = "kickme", -- Despair
+	[200658] = "kickme", -- Star Shower
+	[200905] = "kickme", -- Sap Soul
+	[201400] = "kickme", -- Dread Inferno
+	[201488] = "kickme", -- Frightening Shout
+	[202181] = "kickme", -- Stone Gaze
+	[202658] = "kickme", -- Drain
+	[203176] = "kickme", -- Accelerating Blast
+	[203957] = "kickme", -- Time Lock
+	[204140] = "kickme", -- Shield of Eyes
+	[204243] = "kickme", -- Tormenting Eye
+	[204963] = "kickme", -- Shadow Bolt Volley
+	[205070] = "kickme", -- Spread Infestation
+	[205088] = "kickme", -- Blazing Hellfire
+	[205112] = "kickme", -- Drain Essence
+	[205121] = "kickme", -- Chaos Bolt
+	[205298] = "kickme", -- Essence of Corruption
+	[205300] = "kickme", -- Corruption
+	[207980] = "kickme", -- Disintegration Beam
+	[208165] = "kickme", -- Withering Soul
+	[208697] = "kickme", -- Mind Flay
+	[209404] = "kickme", -- Seal Magic
+	[209410] = "kickme", -- Nightfall Orb
+	[209413] = "kickme", -- Suppress
+	[209485] = "kickme", -- Drain Magic
+	[210261] = "kickme", -- Sound Alarm
+	[210684] = "kickme", -- Siphon Essence
+	[211007] = "kickme", -- Eye of the Vortex
+	[211115] = "kickme", -- Phase Breach
+	[211299] = "kickme", -- Searing Glare
+	[211368] = "kickme", -- Twisted Touch of Life
+	[211401] = "kickme", -- Drifting Embers
+	[211464] = "kickme", -- Fel Detonation
+	[211470] = "kickme", -- Bewitch
+	[211632] = "kickme", -- Brand of the Legion
+	[211757] = "kickme", -- Portal: Argus
+	[215204] = "kickme", -- Hinder
+	[216197] = "kickme", -- Surging Waters
+	[218532] = "kickme", -- Arc Lightning
+	[221059] = "kickme", -- Wave of Decay
+	[222939] = "kickme", -- Shadow Volley
+	[223038] = "kickme", -- Erupting Terror
+	[223392] = "kickme", -- Dread Wrath Volley
+	[223423] = "kickme", -- Nightmare Spores
+	[223565] = "kickme", -- Screech
+	[223590] = "kickme", -- Darkfall
+	[224460] = "kickme", -- Venom Nova
+	[225042] = "kickme", -- Corrupt
+	[225073] = "kickme", -- Despoiling Roots
+	[225079] = "kickme", -- Raining Filth
+	[225100] = "kickme", -- Charging Station
+	[225573] = "kickme", -- Dark Mending
+	[226206] = "kickme", -- Arcane Reconstitution
+	[226269] = "kickme", -- Torment
+	[226285] = "kickme", -- Demonic Ascension
+	[227592] = "kickme", -- Frostbite
+	[227800] = "kickme", -- Holy Shock
+	[227823] = "kickme", -- Holy Wrath
+	[230084] = "kickme", -- Stabilize Rift
+	[207228] = "kickme", -- Warp Nightwell
+	[213281] = "kickme", -- Pyroblast
+	[209017] = "kickme", -- Felblast
+	[209971] = "kickme", -- Albative Pulse
+	[209568] = "kickme", -- Exothermic Release
+	[209617] = "kickme", -- Expedite
+	[208672] = "kickme", -- Carrion wave
+	[239401] = "kickme", -- Pangs of Guild (Belac)
+	[233371] = "kickme", -- Watery Splash (Harjatan fight)
+	[241509] = "kickme", -- Water Blast (Mistress fight)
+	[200631] = "kickme", -- Unnerving Screech
+	[225562] = "kickme", -- Blood Metamorphosis
+    [211875] = "kickme", -- Bladestorm
+    [152964] = "kickme", -- Void Spawn casting Void Pulse, trash mobs
+    [156776] = "kickme", -- Shadowmoon Enslavers channeling Rending Voidlash
+    [156717] = "kickme", -- Monstrous Corpse Spider casting Death Venom
+    [154527] = "kickme", -- Bend Will, MC a friendly.
+    [154623] = "kickme", -- Void Mending
+    [157794] = "kickme", -- Arcane Bomb
+    [154415] = "kickme", -- Mind Spike
+    [154218] = "kickme", -- Arbiters Hammer
+    [154235] = "kickme", -- Arcane Bolt
+    [154221] = "kickme", -- Fel Blast
+    [156854] = "kickme", -- Drain Life
+    [156854] = "kickme", -- Drain Life, Terengor
+    [156857] = "kickme", -- Rain Of Fire
+    [164846] = "kickme", -- Chaos Bolt
+    [156963] = "kickme", -- Incenerate
+    [166335] = "kickme", -- Storm Shield
+    [155504] = "kickme", -- Debiliting Ray
+    [161199] = "kickme", -- Debiliting Fixation from Kyrak
+    [167259] = "kickme", -- Intimidating shout
+    [169151] = "kickme", -- Summon Black Iron Veteran
+    [142238] = "kickme" -- Illusionary Mystic (Heal)
+	}
+
+-- Nyalotha = { 316211, 307177, 313652, 310552, 310788, 313364, 313400, 316711 }
+		-- EternalPalace = { 296673, 295822, 297972, 300491, 300490 },
+	-- Mechagon = { 300650, 300414, 300171, 299588, 300087, 298669, 300514, 300436, 301629, 284219, 301689, 301088, 293930, 293729 },
+	-- BattleOfDazarlor = { 283628, 282243, 289596, 286379, 286563, 287887, 289861, 287419 },
+	-- SiegeOfBoralus = { 274569, 272571, 256957 },
+	-- TolDagor = { 258128, 258153, 257791, 258313, 258634, 258935 },
+		-- KingsRest = { 270901, 267763, 270492, 267273, 269972, 270923, 269973 },
+	-- TempleOfSethraliss = { 265968, 263318, 261635, 261624, 265912, 272820, 268061 },
+	-- Waycrest = { 265368, 263891, 266035, 266036, 278551, 278474, 264050, 264520, 263943, 265407, 265876, 264105, 263959, 268278, 266225 },
+		-- Freehold = { 257397, 258777, 257732, 257736, 256060, 257784 },
+	-- Underrot = { 265089, 278755, 260879, 278961, 266201, 272183, 265433, 272180, 266106, 265523, 265091 },
+		-- Motherload = { 268129, 268709, 268702, 263215, 262540, 269090, 263103, 263066, 268797, 262092, 280604 },
+			-- AtalDazar = { 255824, 253583, 253544, 253517, 256849, 259572, 250096, 255041, 279118 },
+	-- ShrineOfStorm = { 268030, 274438, 268309, 268317, 276767, 268375, 267809, 268322, 267977 },
