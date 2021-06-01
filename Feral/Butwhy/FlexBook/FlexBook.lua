@@ -328,33 +328,39 @@ TrueBearings = 193359,
 
 dark_addon.rotation.spellbooks.warrior = {
 
-	--Arms 
+	--Warrior
 	AutoAttack = 6603,
+	Charge = 100,
+	HeroicLeap = 6544,
+	VictoryRush = 34428,
+	VictoryRushBuff = 32216,
+	RallyingCry = 97462,
 	BattleShout = 6673,
+	Pummel = 6552,
+	StormBolt = 107570,
+	ImpendingVictory = 202168,
+	SpellReflection = 216890,
+	Disarm = 236077,
+	DefensiveStance = 197690,
+	BattleStance = 212520,
+	
+	
+	--Arms 
 	Execute = 281000,
 	BerserkerRage = 18499,
 	Hamstring = 1715,
 	Bladestorm = 227847,
-	HeroicLeap = 6544,
-	Charge = 100,
 	HeroicThrow = 57755,
 	ColossusSmash = 167105,
 	IntimidatingShout = 5246,
 	DiebytheSword = 118038,
 	MortalStrike = 12294,
 	Overpower = 7384,
-	Pummel = 6552,
-	VictoryRush = 34428,
-	VictoryRushBuff = 32216,
-	RallyingCry = 97462,
 	Whirlwind = 1680,
 	Slam = 1464,
 	SweepingStrikes = 260708,
 	Skullsplitter = 260643,
-	ImpendigVicroty = 202168,
-	StormBolt = 107570,
 	Rend = 772,
-	DefensiveStance = 197690,
 	Warbreaker = 262161,
 	Cleave = 845,
 	Avatar = 107574,
@@ -363,11 +369,42 @@ dark_addon.rotation.spellbooks.warrior = {
 	WarBanner = 236320,
 	SharpenBlade = 198817,
 	Duel = 236273,
-	SpellReflection = 216890,
-	Disarm = 236077,
 	ColossusSmashDebuff = 208086,
 	DeepWoundsDebuff = 262115,
-	SuddenDeath = 29725
+	SuddenDeath = 29725,
+	
+	--Fury
+	FuriousSlash = 100130,
+	Rampage = 184367,
+	Enrage = 184361,
+	Recklessness = 1719,
+	Siegebreaker = 280772,
+	ExecuteFury = 5308,
+	Bloodthirst = 23881,
+	RagingBlow = 85288,
+	DragonRoar = 118000,
+	Bladestorm = 46924,
+	WhirlwindFury = 190411,
+	Massacre = 206315,
+	SuddenDeath = 280721,
+	RecklessAbandon = 202751,
+	AngerManagement = 152278,
+	PulverizingBlows = 275632,
+	SimmeringRage = 278757,
+	RecklessFlurry = 278758,
+	UnbridledFerocity = 288056,
+	WarMachine = 262231,
+	EndlessRage = 202296,
+	Carnage = 202922,
+	DoubleTime = 103827,
+	BoundingStride = 202163,
+	EnragedRegeneration = 184364,
+	AncestralCall = 274738,
+	Berserking = 26297,
+	BloodFury = 33697,
+	GiftoftheNaaru = 121093,
+	LightsJudgement = 255647
+
 
 }
 
@@ -453,9 +490,11 @@ dark_addon.rotation.spellbooks.azerite ={
 	
 	 WorldveinResonance1 = 295186,
 		 WorldveinResonance2 = 298628, --- Concentrate energy into the Heart of Azeroth, immediately causing 3 Lifeblood Shards to erupt from the nearby ground for 18 sec, and incease the primary stat gained from Lifeblood Shards by 300% for 18 sec.
-			 WorldveinResonance3 = 299334
+			 WorldveinResonance3 = 299334,
 
-
+LifeBindersInvocation1 = 293032,
+	LifeBindersInvocation2 = 299943,
+		LifeBindersInvocation3 = 299944
 
 }
 
@@ -713,7 +752,12 @@ dark_addon.rotation.spellbooks.repa = {
 [20066] = "repentance" --pal
 }
 
-
+-- <copypaste Inside flexbook.lua>
+dark_addon.rotation.spellbooks.pvpkicks = {
+    -- nu tipa privet
+    [60103] = "LavaLash",
+    [187837] = "LightningBolt"
+}
 
 
 --- Trinket boy
@@ -2180,6 +2224,9 @@ TranscendenceReturn = 119996,
 Vivify = 116670,
 WhirlingDragonPunch = 152175,
 }
+
+
+
 
 dark_addon.rotation.spellbooks.InterruptableTable = {
     [309648] = "kickme", -- Tainted Polymorph
