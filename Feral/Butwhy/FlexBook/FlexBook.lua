@@ -281,7 +281,7 @@ GrandMelee = 193358,
 RuthlessPrecision = 193357,
 SkullAndCrossbones = 199603,
 BladeFlurry = 13877,
-"kickme"Bearings = 193359,
+TrueBearings = 193359,
 WoundPoison = 8679,
 CheapShot = 1833,
 
@@ -317,7 +317,7 @@ GrandMelee = 193358,
 Broadside = 193356,
 SkullandCrossBones = 199603,
 BurriedTreasure = 199600,
-"kickme"Bearings = 193359,
+TrueBearings = 193359,
 
 
 
@@ -328,39 +328,33 @@ BurriedTreasure = 199600,
 
 dark_addon.rotation.spellbooks.warrior = {
 
-	--Warrior
-	AutoAttack = 6603,
-	Charge = 100,
-	HeroicLeap = 6544,
-	VictoryRush = 34428,
-	VictoryRushBuff = 32216,
-	RallyingCry = 97462,
-	BattleShout = 6673,
-	Pummel = 6552,
-	StormBolt = 107570,
-	ImpendingVictory = 202168,
-	SpellReflection = 216890,
-	Disarm = 236077,
-	DefensiveStance = 197690,
-	BattleStance = 212520,
-	
-	
 	--Arms 
+	AutoAttack = 6603,
+	BattleShout = 6673,
 	Execute = 281000,
 	BerserkerRage = 18499,
 	Hamstring = 1715,
 	Bladestorm = 227847,
+	HeroicLeap = 6544,
+	Charge = 100,
 	HeroicThrow = 57755,
 	ColossusSmash = 167105,
 	IntimidatingShout = 5246,
 	DiebytheSword = 118038,
 	MortalStrike = 12294,
 	Overpower = 7384,
+	Pummel = 6552,
+	VictoryRush = 34428,
+	VictoryRushBuff = 32216,
+	RallyingCry = 97462,
 	Whirlwind = 1680,
 	Slam = 1464,
 	SweepingStrikes = 260708,
 	Skullsplitter = 260643,
+	ImpendigVicroty = 202168,
+	StormBolt = 107570,
 	Rend = 772,
+	DefensiveStance = 197690,
 	Warbreaker = 262161,
 	Cleave = 845,
 	Avatar = 107574,
@@ -369,42 +363,11 @@ dark_addon.rotation.spellbooks.warrior = {
 	WarBanner = 236320,
 	SharpenBlade = 198817,
 	Duel = 236273,
+	SpellReflection = 216890,
+	Disarm = 236077,
 	ColossusSmashDebuff = 208086,
 	DeepWoundsDebuff = 262115,
-	SuddenDeath = 29725,
-	
-	--Fury
-	FuriousSlash = 100130,
-	Rampage = 184367,
-	Enrage = 184361,
-	Recklessness = 1719,
-	Siegebreaker = 280772,
-	ExecuteFury = 5308,
-	Bloodthirst = 23881,
-	RagingBlow = 85288,
-	DragonRoar = 118000,
-	Bladestorm = 46924,
-	WhirlwindFury = 190411,
-	Massacre = 206315,
-	SuddenDeath = 280721,
-	RecklessAbandon = 202751,
-	AngerManagement = 152278,
-	PulverizingBlows = 275632,
-	SimmeringRage = 278757,
-	RecklessFlurry = 278758,
-	UnbridledFerocity = 288056,
-	WarMachine = 262231,
-	EndlessRage = 202296,
-	Carnage = 202922,
-	DoubleTime = 103827,
-	BoundingStride = 202163,
-	EnragedRegeneration = 184364,
-	AncestralCall = 274738,
-	Berserking = 26297,
-	BloodFury = 33697,
-	GiftoftheNaaru = 121093,
-	LightsJudgement = 255647
-
+	SuddenDeath = 29725
 
 }
 
@@ -490,11 +453,9 @@ dark_addon.rotation.spellbooks.azerite ={
 	
 	 WorldveinResonance1 = 295186,
 		 WorldveinResonance2 = 298628, --- Concentrate energy into the Heart of Azeroth, immediately causing 3 Lifeblood Shards to erupt from the nearby ground for 18 sec, and incease the primary stat gained from Lifeblood Shards by 300% for 18 sec.
-			 WorldveinResonance3 = 299334,
+			 WorldveinResonance3 = 299334
 
-LifeBindersInvocation1 = 293032,
-	LifeBindersInvocation2 = 299943,
-		LifeBindersInvocation3 = 299944
+
 
 }
 
@@ -752,12 +713,7 @@ dark_addon.rotation.spellbooks.repa = {
 [20066] = "repentance" --pal
 }
 
--- <copypaste Inside flexbook.lua>
-dark_addon.rotation.spellbooks.pvpkicks = {
-    -- nu tipa privet
-    [60103] = "LavaLash",
-    [187837] = "LightningBolt"
-}
+
 
 
 --- Trinket boy
@@ -1284,7 +1240,7 @@ GrandMelee = 193358,
 RuthlessPrecision = 193357,
 SkullAndCrossbones = 199603,
 BladeFlurry = 13877,
-"kickme"Bearings = 193359,
+TrueBearings = 193359,
 WoundPoison = 8679,
 CheapShot = 1833,
 
@@ -1320,7 +1276,7 @@ GrandMelee = 193358,
 Broadside = 193356,
 SkullandCrossBones = 199603,
 BurriedTreasure = 199600,
-"kickme"Bearings = 193359,
+TrueBearings = 193359,
 
 
 
@@ -1805,7 +1761,7 @@ dark_addon.rotation.spellbooks.GIThunter = {
     
     BurstingShot = 186387,
     MarkedShot = 185901,
-    "kickme"shot = 193526,
+    Trueshot = 193526,
     MarkingTargets = 223138,
     HuntersMark = 185987,
     HuntersMarkMM = 257284,
@@ -2225,23 +2181,7 @@ Vivify = 116670,
 WhirlingDragonPunch = 152175,
 }
 
-
-
-
-
-	-- Horrific visions start
--- HorrificVisions = { 309648, 308375, 297315, 308366, 308575, 304251, 298033, 288915 }
-	 -- Tainted Polymorph
-	 -- Psychic Scream
-	 -- Void Buffet
-	 -- Agonizing Torment
-	 -- Shadow Shift
-	 -- Void Quills
-	 -- Touch of the Abyss
-	 -- Horrifying
-	-- Horrific visions end
-	-- Atal'Dazar start
-	dark_addon.rotation.spellbooks.InterruptableTable = {
+dark_addon.rotation.spellbooks.InterruptableTable = {
     [309648] = "kickme", -- Tainted Polymorph
 	[308375] = "kickme", -- Psychic Scream
 	[297315] = "kickme", -- Void Buffet
@@ -2527,18 +2467,3 @@ WhirlingDragonPunch = 152175,
     [169151] = "kickme", -- Summon Black Iron Veteran
     [142238] = "kickme" -- Illusionary Mystic (Heal)
 	}
-
--- Nyalotha = { 316211, 307177, 313652, 310552, 310788, 313364, 313400, 316711 }
-		-- EternalPalace = { 296673, 295822, 297972, 300491, 300490 },
-	-- Mechagon = { 300650, 300414, 300171, 299588, 300087, 298669, 300514, 300436, 301629, 284219, 301689, 301088, 293930, 293729 },
-	-- BattleOfDazarlor = { 283628, 282243, 289596, 286379, 286563, 287887, 289861, 287419 },
-	-- SiegeOfBoralus = { 274569, 272571, 256957 },
-	-- TolDagor = { 258128, 258153, 257791, 258313, 258634, 258935 },
-		-- KingsRest = { 270901, 267763, 270492, 267273, 269972, 270923, 269973 },
-	-- TempleOfSethraliss = { 265968, 263318, 261635, 261624, 265912, 272820, 268061 },
-	-- Waycrest = { 265368, 263891, 266035, 266036, 278551, 278474, 264050, 264520, 263943, 265407, 265876, 264105, 263959, 268278, 266225 },
-		-- Freehold = { 257397, 258777, 257732, 257736, 256060, 257784 },
-	-- Underrot = { 265089, 278755, 260879, 278961, 266201, 272183, 265433, 272180, 266106, 265523, 265091 },
-		-- Motherload = { 268129, 268709, 268702, 263215, 262540, 269090, 263103, 263066, 268797, 262092, 280604 },
-			-- AtalDazar = { 255824, 253583, 253544, 253517, 256849, 259572, 250096, 255041, 279118 },
-	-- ShrineOfStorm = { 268030, 274438, 268309, 268317, 276767, 268375, 267809, 268322, 267977 },
