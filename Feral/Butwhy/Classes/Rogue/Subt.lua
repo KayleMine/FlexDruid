@@ -30,6 +30,7 @@ SB.ShurikenTornado = 277925
 SB.Gloomblade = 200758
 SB.MarkForDeath = 137619
 SB.CoralDebuff = 303568
+SB.Polymorph = 118
 local function azer()
 local delay = 0  
   --burst essences
@@ -257,33 +258,6 @@ local coralstacktouse = dark_addon.settings.fetch("FlexDagger_coralstacktouse", 
 	setfenv(itemss, dark_addon.environment.env)
 	
 
--- local function SpellCastTest() -- private server meme
-
--- if player.alive and target.enemy and target.alive then
-
--- test = CreateFrame("Frame", "test", UIParent);
--- test:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
-
--- test:SetScript("OnEvent", function(self, event, arg1, arg2, arg3, arg4)
-
-	-- if(event=="UNIT_SPELLCAST_SUCCEEDED" and arg1 == "target") then
-
-		-- if arg3==(SB.WarriorStun) then
-
-			-- return cast(SB.Blind, "Target")
-
-		-- end
-
-	-- end
-	
-	-- end)
-
--- end
-
-
--- end
--- setfenv(SpellCastTest, dark_addon.environment.env)
-
 -- local function smartcloak()
 -- -- in future...
 -- if castable(SB.CloakOfShadows) and (player.debuff(Smart.1) or player.debuff(Smart.2).count = 3) then return cast(SB.CloakOfShadows) end
@@ -297,7 +271,20 @@ local coralstacktouse = dark_addon.settings.fetch("FlexDagger_coralstacktouse", 
         -- return cast(SB.Shadowstrike, 'target')
         -- end 
 -- end
-	
+local ValidClassification = {
+    ['worldboss'] = true,
+    ['rareelite'] = true,
+    ['elite'] = true,
+    ['rare'] = false,
+    ['normal'] = false,
+    ['trivial'] = false,
+    ['minus'] = false
+}
+
+local function ValidCDTarget(unit)
+    if type(unit) == 'table' then unit = unit.unitID end
+    return ValidClassification[UnitClassification(unit)] and UnitLevel(unit) > UnitLevel('player')
+end	
 	
 local function combat()
 
@@ -321,25 +308,29 @@ SetCVar("DropCombat", 1)
 end
 
 
--- if target.alive and target.enemy and player.alive then	
--- local intpercent = math.random(50,100)
+		
+		
+ if target.alive and target.enemy and player.alive then	
+        local intpercentlow = dark_addon.settings.fetch('FlexDagger_intpercentlow', 50)
+        local intpercenthigh = dark_addon.settings.fetch('FlexDagger_intpercenthigh', 65)
+        local intpercent = math.random(intpercentlow, intpercenthigh)
 
-	-- if toggle("pveinterrupt", false) then
+	if toggle("pveinterrupt", false) then
 	
-	-- if castable(SB.Kick, 'target') and target.interrupt(intpercent, false) then
-      -- return cast(SB.Kick, 'target')
-    -- end
+	if castable(SB.Kick, 'target') and target.interrupt(intpercent, false) and target.distance < 8 then
+      return cast(SB.Kick, 'target')
+    end
 
-	-- if castable(SB.Blind, 'target') and not castable(SB.Kick) and target.interrupt(intpercent, false) then
-      -- return cast(SB.Blind, 'target')
-    -- end
+	if castable(SB.Blind, 'target') and target.interrupt(intpercent, false) and (target.distance > 9 or not castable(SB.Kick)) then
+      return cast(SB.Blind, 'target')
+    end
 	
-	-- if castable(SB.CheapShot, 'target') and not castable(SB.Kick) and target.interrupt(intpercent, false) then
-      -- return cast(SB.CheapShot, 'target')
-    -- end	
+	if castable(SB.CheapShot, 'target') and not castable(SB.Kick) and target.interrupt(intpercent, false) and target.distance < 8 then
+      return cast(SB.CheapShot, 'target')
+    end	
 	
-	-- end
--- end
+	end
+ end
 
 
 if GetCVar("DropCombat") == '1' then 
@@ -631,6 +622,27 @@ if not(player.buff(SB.VanishBuff).up or player.buff(SB.Stealth).up) then
 SetCVar("DropCombat", 1)
 end
 
+if target.alive and target.enemy and player.alive then	
+        local intpercentlow = dark_addon.settings.fetch('FlexDagger_intpercentlow', 50)
+        local intpercenthigh = dark_addon.settings.fetch('FlexDagger_intpercenthigh', 65)
+        local intpercent = math.random(intpercentlow, intpercenthigh)
+
+	if toggle("pveinterrupt", false) then
+	
+	if castable(SB.Kick, 'target') and target.interrupt(intpercent, false) and target.distance < 8 then
+      return cast(SB.Kick, 'target')
+    end
+
+	if castable(SB.Blind, 'target') and target.interrupt(intpercent, false) and (target.distance > 9 or not castable(SB.Kick)) then
+      return cast(SB.Blind, 'target')
+    end
+	
+	if castable(SB.CheapShot, 'target') and not castable(SB.Kick) and target.interrupt(intpercent, false) and target.distance < 8 then
+      return cast(SB.CheapShot, 'target')
+    end	
+	
+	end
+end
   local enemyCount = enemies.around(8)
   if enemyCount == 0 then enemyCount = 1 end
   local ShadowSteps = dark_addon.settings.fetch("FlexDagger_ShadowSteps")
@@ -726,6 +738,8 @@ local function interface()
 	  -- { key = 'useshadowstep', type = 'checkbox', text = 'Use Shadow Step on Vanish', desc = '' },
       { key = 'usenameplates', type = 'checkbox', text = 'Show Enemy Nameplates', desc = 'Use name plates to count baddies' },
 		{ key = 'coralstacktouse', type = 'spinner', text = 'Use Coral on stacks', desc = '', default = 5, min = 1, max = 100, step = 1 },
+            { key = 'intpercentlow', type = 'spinner', text = 'Interrupt Low %', default = '50', desc = '', min = 5, max = 50, step = 1 },
+            { key = 'intpercenthigh', type = 'spinner', text = 'Interrupt High %', default = '65', desc = '', min = 51, max = 100, step = 1 },
      -- { key = 'checkbox_for_something...', type = 'checkbox', text = 'хххххххххххх', desc = 'ууууууууууу' },
 	        { type = 'rule' },
 		{ type = 'header', text = "Save Ur Ass!", align= 'center' },
