@@ -1,6 +1,7 @@
 local addon, dark_addon = ...
 local SB = dark_addon.rotation.spellbooks.GITrogue
 local AZ = dark_addon.rotation.spellbooks.azerite
+local DS = dark_addon.rotation.spellbooks.InterruptableTable
 
 SB.Shadowstrike = 185438
 SB.SecretTechnique = 280719
@@ -310,12 +311,16 @@ end
 
 		
 		
- if target.alive and target.enemy and player.alive then	
+ if target.alive and target.enemy and player.alive and toggle("pveinterrupt", false) then	
         local intpercentlow = dark_addon.settings.fetch('FlexDagger_intpercentlow', 50)
         local intpercenthigh = dark_addon.settings.fetch('FlexDagger_intpercenthigh', 65)
         local intpercent = math.random(intpercentlow, intpercenthigh)
 
-	if toggle("pveinterrupt", false) then
+					
+					for i = 1, 40 do
+                    local name, _, _, _, endTime, _, _, _, spell_id  = UnitCastingInfo("target", i)
+					
+     if name and DS[spell_id] then
 	
 	if castable(SB.Kick, 'target') and target.interrupt(intpercent, false) and target.distance < 8 then
       return cast(SB.Kick, 'target')
@@ -329,6 +334,7 @@ end
       return cast(SB.CheapShot, 'target')
     end	
 	
+	end
 	end
  end
 
@@ -412,9 +418,9 @@ end
 	-- return cast(SB.Vanish) 
 	-- end		
 
-        if (not player.buff(SB.Stealth) or player.buff(SB.VanishBuff)) and player.power.energy.actual >= 40 and target.distance >= 10 and target.distance <= 30 and -spell(SB.ShurikenToss) == 0 then
-            return cast(SB.ShurikenToss, "Target")
-        end
+        -- if (not player.buff(SB.Stealth) or player.buff(SB.VanishBuff)) and player.power.energy.actual >= 40 and target.distance >= 10 and target.distance <= 30 and -spell(SB.ShurikenToss) == 0 then
+            -- return cast(SB.ShurikenToss, "Target")
+        -- end
 
 	if enemyCount <= 1 then		
 			--if spell(SB.Combustion).cooldown > 41
