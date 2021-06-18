@@ -41,7 +41,7 @@
   <Script file="Butwhy\Classes\dk\dodik.lua" />
   <Script file="Butwhy\Classes\Warrior\Arms.lua" />
   <Script file="Butwhy\Classes\Warrior\Fury.lua" />
-  
+    <Script file="\Butwhy\Classes\Mage\FireMage.lua" />
 	<Script file="Butwhy\GitHubRotations\RexArmsWar.lua" /> 
 	<Script file="Butwhy\GitHubRotations\RexFuryWar.lua" />
 	<Script file="Butwhy\GitHubRotations\RexProtWar.lua" />
