@@ -33,6 +33,13 @@ SB.DemonicCircle = 268358
 SB.HealthFunnel = 755
 SB.DemonicCalling = 205146
 SB.DemonHeartBuff = 264173
+SB.FelGuard = 30146
+SB.SoulStone = 20707
+SB.Succub = 712
+SB.FelHunter = 691
+SB.Voidwalker = 697
+SB.Impp = 688
+
 local frame = CreateFrame("FRAME")
 frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 
@@ -125,6 +132,7 @@ end)
 
 
 local function combat()
+local summon = dark_addon.settings.fetch("Demon_settings_summon")
   if GetCVar("nameplateShowEnemies") == '0' then
     SetCVar("nameplateShowEnemies", 1)
   end
@@ -230,6 +238,7 @@ end
 			end 
 
 	--3 uncomment to cast (req. 8.3.0+ patch)
+	
 		if delay < GetTime() then
 	if castable(AZ.MomentofGlory1) then
     return cast(AZ.MomentofGlory1, 'player')
@@ -386,9 +395,9 @@ currentTime = GetServerTime()
 		end
 
 		-- Grimoire Felguard
-		if castable(SB.GrimoireFelguard) and -spell(SB.GrimoireFelguard) == 0 and player.power.soulshards.actual >= 1 then
-			return cast(SB.GrimoireFelguard, 'target')
-		end
+		-- if castable(SB.GrimoireFelguard) and -spell(SB.GrimoireFelguard) == 0 and player.power.soulshards.actual >= 1 then
+			-- return cast(SB.GrimoireFelguard, 'target')
+		-- end
 
 		-- Hand of Gul'dan for Explosive Potential
 		if castable(SB.HandOfGuldan) and not buff(SB.ExplosivePotential).up and player.power.soulshards.actual >= 3 and not spell(SB.HandOfGuldan).lastcast then
@@ -445,46 +454,132 @@ currentTime = GetServerTime()
 
 
 end
+
+
+
+if not pet.exists and not player.moving and not player.channeling() then
+
+if not talent(6, 3) then 
+if not spell(SB.Succub).lastcast or not spell(SB.FelGuard).lastcast or not spell(SB.FelHunter).lastcast  or not spell(SB.Voidwalker).lastcast or not spell(SB.Impp).lastcast then
+	if (summon == "Succub") and -spell(SB.Succub) == 0 then
+      return cast(SB.Succub)
+    end
+	if (summon == "FelGuard") and -spell(SB.FelGuard) == 0 then
+      return cast(SB.FelGuard)
+    end						
+	if (summon == "FelHunter") and -spell(SB.FelHunter) == 0 then
+      return cast(SB.FelHunter)
+    end		
+	if (summon == "Voidwalker") and -spell(SB.Voidwalker) == 0 then
+      return cast(SB.Voidwalker)
+    end	
+	if (summon == "Impp") and -spell(SB.Impp) == 0 then
+      return cast(SB.Impp)
+    end	
 end
+
+if talent(6, 3) and (not spell(SB.GrimoireFelguard).lastcast) then
+return cast(SB.GrimoireFelguard)
+end
+
+end
+end
+
+
+
+
+
+if toggle('indiantoggler' ,false) then
+if modifier.alt and castable(SB.DemonicGateway) then 
+return cast(SB.DemonicGateway, 'ground')
+end
+
+if modifier.lcontrol and castable(SB.SoulStone) then
+  return cast(SB.SoulStone, 'mouseover')
+end
+end
+
+end
+
 
 local function resting()
+local summon = dark_addon.settings.fetch("Demon_settings_summon")
 
---   local enemyCount = enemies.around(40)
---   dark_addon.interface.status_extra('T#:' .. enemyCount .. ' D:' .. target.distance)
-
---     if pet.exists then
---         print(pet.guid)
---     end
-
---[[if target.alive and target.enemy and player.alive and not player.channeling() then
---Cast Shadow Word Pain.
-        if castable(SB.ShadowWordPain) and -spell(SB.ShadowWordPain) == 0 and target.debuff(SB.ShadowWordPain).down then
-            return cast(SB.ShadowWordPain)
-        end]]
+if toggle('indiantoggler' ,false) then
+if modifier.alt and castable(SB.DemonicGateway) then 
+return cast(SB.DemonicGateway, 'ground')
 end
+
+if modifier.lcontrol and castable(SB.SoulStone) then
+  return cast(SB.SoulStone, 'mouseover')
+end
+end
+
+
+
+
+if not pet.exists and not player.moving and not player.channeling() then
+
+if not talent(6, 3) then 
+if not spell(SB.Succub).lastcast or not spell(SB.FelGuard).lastcast or not spell(SB.FelHunter).lastcast  or not spell(SB.Voidwalker).lastcast or not spell(SB.Impp).lastcast then
+	if (summon == "Succub") and -spell(SB.Succub) == 0 then
+      return cast(SB.Succub)
+    end
+	if (summon == "FelGuard") and -spell(SB.FelGuard) == 0 then
+      return cast(SB.FelGuard)
+    end						
+	if (summon == "FelHunter") and -spell(SB.FelHunter) == 0 then
+      return cast(SB.FelHunter)
+    end		
+	if (summon == "Voidwalker") and -spell(SB.Voidwalker) == 0 then
+      return cast(SB.Voidwalker)
+    end	
+	if (summon == "Impp") and -spell(SB.Impp) == 0 then
+      return cast(SB.Impp)
+    end	
+end
+
+if talent(6, 3) and (not spell(SB.GrimoireFelguard).lastcast) then
+return cast(SB.GrimoireFelguard)
+end
+
+end
+end
+
+
+
+
+end
+
 
 
 local function interface()
 
     local settings = {
-        key = 'afflo_settings',
-        title = 'Affliction Warlock',
+        key = 'Demon_settings',
+        title = 'Demon Warlock',
         width = 300,
         height = 500,
         resize = true,
         show = false,
         template = {
-            { type = 'header', text = "            Rex's Affliction Warlock Settings" },
-            { type = 'text', text = 'Everything on the screen is LIVE.  As you make changes, they are being fed to the engine' },
+            { type = 'header', text = "Demon W3ЯL0CK" },
             { type = 'text', text = 'Suggested Talents - 1 3 1 1 2 1 1' },
-            { type = 'text', text = 'If you want automatic AOE then please remember to turn on EnemyNamePlates in WoW (V key)' },
+            { type = 'text', text = 'GATE - LALT | SOUL STONE - LCONTROL' },
             { type = 'rule' },
             { type = 'text', text = 'Interrupt Settings' },
             { key = 'intpercentlow', type = 'spinner', text = 'Interrupt Low %', default = '50', desc = 'low% cast time to interrupt at', min = 5, max = 50, step = 1 },
             { key = 'intpercenthigh', type = 'spinner', text = 'Interrupt High %', default = '65', desc = 'high% cast time to interrupt at', min = 51, max = 100, step = 1 },
-            { type = 'text', text = 'Defensive Settings' },
-            { key = 'DHealth', type = 'spinner', text = 'Dispersion at Health %', default = '30', desc = 'cast Dispersion at', min = 0, max = 100, step = 1 },
-            { key = 'SMHealth', type = 'spinner', text = 'Shadow Mend at Health %', default = '50', desc = 'cast Shadow Mend at', min = 0, max = 100, step = 1 },
+            { type = 'text', text = 'Summon Settings' },
+			{ key = 'summon', type = 'dropdown', text = 'Pick demon', desc = 'If no talent 6 - 3', default = '0000',
+				list = {	
+							{ key = 'Impp', text = 'IMP' },
+							{ key = 'Voidwalker', text = 'Voidwalker' },
+							{ key = 'FelHunter', text = 'FelHunter' },
+							{ key = 'FelGuard', text = 'FelGuard' },
+							{ key = 'Succub', text = 'Succub' },
+					    } },
+				
         }
     }
 
@@ -513,6 +608,23 @@ local function interface()
         end
     })
     
+	    dark_addon.interface.buttons.add_toggle(
+    {
+      name = "indiantoggler",
+      label = "ON - OFF Alt | Ctrl binds.",
+      font = "dark_addon_icon",
+      on = {
+        label = dark_addon.interface.icon("toggle-on"),
+        color = dark_addon.interface.color.warrior_brown,
+        color2 = dark_addon.interface.color.warrior_brown
+      },
+      off = {
+        label = dark_addon.interface.icon("toggle-off"),
+        color = dark_addon.interface.color.grey,
+        color2 = dark_addon.interface.color.dark_grey
+      }
+    }
+  )
 
 end
 
