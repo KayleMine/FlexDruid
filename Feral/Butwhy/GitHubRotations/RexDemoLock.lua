@@ -135,7 +135,7 @@ local function combat()
   if enemyCount == 0 then enemyCount = 1 end
   
 if target.alive and target.enemy and player.alive and not player.channeling() then
-if toggle('cooldowns', false) then 
+if toggle('cooldowns', false) and not player.moving then 
 
 if not talent(7, 2) then
 if castable(SB.SummonDemonicTyrant) then return cast(SB.SummonDemonicTyrant, 'target') end 
@@ -149,10 +149,10 @@ if castable(SB.SummonDemonicTyrant) and impCount >= 4 then
 end
 end
 
-end
 
 
-if toggle('cooldowns', false) and not player.moving then
+
+
 -- attention indian code
   local wrist = GetInventoryItemID("player", 6)
   -- local belt = GetInventoryItemID("player", 8)
