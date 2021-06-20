@@ -1,6 +1,6 @@
 local dark_addon = dark_interface
 local SB = dark_addon.rotation.spellbooks.GITwarlock
-
+local AZ = dark_addon.rotation.spellbooks.azerite
 -- To Do
 
 -- Spells
@@ -32,7 +32,7 @@ SB.DemonicGateway = 111771
 SB.DemonicCircle = 268358
 SB.HealthFunnel = 755
 SB.DemonicCalling = 205146
-
+SB.DemonHeartBuff = 264173
 local frame = CreateFrame("FRAME")
 frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 
@@ -71,7 +71,7 @@ frame:SetScript("OnEvent", function(self, event)
 		end
 		
 		-- imp died
-		if (type == "UNIT_DIED") and (sourceName == "Wild Imp" or destName == "Wild Imp") then
+		if (type == "UNIT_DIED") and ((sourceName == "Wild Imp" or destName == "Wild Imp") or (sourceName == "Дикий бес" or destName == "Дикий бес") )then
 			for index, value in pairs(impTime) do
 				if destGUID == index then
 					impTime[index] = nil
@@ -84,7 +84,7 @@ frame:SetScript("OnEvent", function(self, event)
 		end
 
 		-- imp died from casting (5 casts)
-		if (type == "SPELL_CAST_SUCCESS") and sourceName == "Wild Imp" then
+		if (type == "SPELL_CAST_SUCCESS") and (sourceName == "Wild Imp" or sourceName == "Дикий бес") then
 			for index,  value in pairs(impCast) do
 				if sourceGUID == index then
 					-- remove cast
@@ -103,7 +103,7 @@ frame:SetScript("OnEvent", function(self, event)
 		end
 	
 		-- imp summoned
-		if (type == "SPELL_SUMMON") and destName == "Wild Imp" and sourceGUID == playerGUID then
+		if (type == "SPELL_SUMMON") and (destName == "Wild Imp" or destName == "Дикий бес") and sourceGUID == playerGUID then
 			--print("imp Summoned")
 			impTime[destGUID] = gettime
 			impCast[destGUID] = 5
@@ -112,11 +112,11 @@ frame:SetScript("OnEvent", function(self, event)
 		end	
         
         -- Dreadstalker summoned
-        if (type == "SPELL_SUMMON") and destName == "Dreadstalker" and sourceGUID == playerGUID then
+        if (type == "SPELL_SUMMON") and (destName == "Dreadstalker" or destName == "Зловещий охотник") and sourceGUID == playerGUID then
             --print("dreadstalker Summoned")
             stalkerCount = stalkerCount + 1
             stalkerspawnTime = timestamp
-            print('Dreadstalker Spawn Time:' .. stalkerspawnTime)
+           -- print('Dreadstalker Spawn Time:' .. stalkerspawnTime)
             --print(("dreadstalker spawned. Count: |cff00ff00%d|r"):format(impCount))
         end
 
@@ -125,16 +125,244 @@ end)
 
 
 local function combat()
+  if GetCVar("nameplateShowEnemies") == '0' then
+    SetCVar("nameplateShowEnemies", 1)
+  end
+  
+  macro('/cqs')
+  
+  local enemyCount = enemies.around(8)
+  if enemyCount == 0 then enemyCount = 1 end
+  
 if target.alive and target.enemy and player.alive and not player.channeling() then
+if toggle('cooldowns', false) then 
+
+if not talent(7, 2) then
+if castable(SB.SummonDemonicTyrant) then return cast(SB.SummonDemonicTyrant, 'target') end 
+end
+
+
+if talent(7, 2) then
+
+if castable(SB.SummonDemonicTyrant) and impCount >= 4 then
+ return cast(SB.SummonDemonicTyrant, 'target') 
+end
+end
+
+end
+
+
+if toggle('cooldowns', false) and not player.moving then
+-- attention indian code
+  local wrist = GetInventoryItemID("player", 6)
+  -- local belt = GetInventoryItemID("player", 8)
+  local ring1 = GetInventoryItemID("player", 11)
+  local ring2 = GetInventoryItemID("player", 12)
+  local hands = GetInventoryItemID("player", 7)
+   
+   
+  local Trinket13 = GetInventoryItemID("player", 13)
+  local Trinket14 = GetInventoryItemID("player", 14)
+  local itemID = GetInventoryItemID("player", 13) 
+
+
+
+	if itemID == 169314 then
+
+
+		if GetItemCooldown(Trinket13) == 0 and not player.moving then
+		  macro('/stopcasting')
+		  macro('/use 13')
+		end
+
+
+	end
+
+    if GetItemCooldown(Trinket14) == 0 and not player.channeling() then
+      macro('/use 14')
+    end
+
+	if GetItemCooldown(Trinket13) == 0 and not itemID == 169314 and not player.channeling() then
+			  macro('/use 13')
+	end
+
+
+	if GetItemCooldown(ring1) == 0 and not itemID == 169314  and not player.channeling() then
+			  macro('/use 11')
+	end
+	
+	
+		if GetItemCooldown(ring2) == 0 and not itemID == 169314  and not player.channeling() then
+			  macro('/use 12')
+	end
+	
+		if GetItemCooldown(hands) == 0 and not itemID == 169314  and not player.channeling() then
+			  macro('/use 7')
+	end
+		
+   --Essence start
+   	local delay = 0
+   
+   --burst essences
+
+	--1
+
+    if castable(AZ.GuardianofAzeroth1) and -spell(AZ.GuardianofAzeroth1) == 0 then
+    return cast(AZ.GuardianofAzeroth1, 'target')
+    end 
+	    if castable(AZ.GuardianofAzeroth2) and -spell(AZ.GuardianofAzeroth2) == 0 then
+        return cast(AZ.GuardianofAzeroth2, 'target')
+		end 
+		    if castable(AZ.GuardianofAzeroth3) and -spell(AZ.GuardianofAzeroth3) == 0 then
+			return cast(AZ.GuardianofAzeroth3, 'target')
+			end 
+	
+	--2
+	
+    if castable(AZ.MemoryofLucidDreams1) and -spell(AZ.MemoryofLucidDreams1) == 0 then
+    return cast(AZ.MemoryofLucidDreams1, 'target')
+    end 
+	    if castable(AZ.MemoryofLucidDreams2) and -spell(AZ.MemoryofLucidDreams2) == 0 then
+        return cast(AZ.MemoryofLucidDreams2, 'target')
+		end 
+		    if castable(AZ.MemoryofLucidDreams3) and -spell(AZ.MemoryofLucidDreams3) == 0 then
+			return cast(AZ.MemoryofLucidDreams3, 'target')
+			end 
+
+	--3 uncomment to cast (req. 8.3.0+ patch)
+		if delay < GetTime() then
+	if castable(AZ.MomentofGlory1) then
+    return cast(AZ.MomentofGlory1, 'player')
+    end 
+	    if castable(AZ.MomentofGlory2) and -spell(AZ.MomentofGlory2) == 0 then
+        return cast(AZ.MomentofGlory2, 'target')
+		end 
+		    if castable(AZ.MomentofGlory3) and -spell(AZ.MomentofGlory3) == 0 then
+			return cast(AZ.MomentofGlory3, 'target')
+			end 
+		delay = GetTime() + 1.5
+	end	
+			
+	--4
+	
+    if castable(AZ.WorldveinResonance1) and -spell(AZ.WorldveinResonance1) == 0 then
+    return cast(AZ.WorldveinResonance1, 'target')
+    end 
+	    if castable(AZ.WorldveinResonance2) and -spell(AZ.WorldveinResonance2) == 0 then
+        return cast(AZ.WorldveinResonance2, 'target')
+		end 
+		    if castable(AZ.WorldveinResonance3) and -spell(AZ.WorldveinResonance3) == 0 then
+			return cast(AZ.WorldveinResonance3, 'target')
+			end 
+
+	
+	
+	
+	--damage essences
+	
+	
+	
+	--1 
+	
+	 if castable(AZ.AnimaofDeath1) and -spell(AZ.AnimaofDeath1) == 0 then
+        return cast(AZ.AnimaofDeath1, 'target')
+    end
+			 if castable(AZ.AnimaofDeath2) and -spell(AZ.AnimaofDeath2) == 0 then
+        return cast(AZ.AnimaofDeath2, 'target')
+    end
+				 if castable(AZ.AnimaofDeath3) and -spell(AZ.AnimaofDeath3) == 0 then
+        return cast(AZ.AnimaofDeath3, 'target')
+    end
+	
+	--2 
+	
+	 if castable(AZ.BloodoftheEnemy1) and -spell(AZ.BloodoftheEnemy1) == 0 then
+        return cast(AZ.BloodoftheEnemy1, 'target')
+    end
+			 if castable(AZ.BloodoftheEnemy2) and -spell(AZ.BloodoftheEnemy2) == 0 then
+        return cast(AZ.BloodoftheEnemy2, 'target')
+    end
+				 if castable(AZ.BloodoftheEnemy3) and -spell(AZ.BloodoftheEnemy3) == 0 then
+        return cast(AZ.BloodoftheEnemy3, 'target')
+    end
+	
+		
+	--3  uncomment to cast (req. 8.3.0+ patch)
+	
+	 if castable(AZ.ReapingFlames1) and -spell(AZ.ReapingFlames1) == 0 then
+        return cast(AZ.ReapingFlames1, 'target')
+    end
+			 if castable(AZ.ReapingFlames2) and -spell(AZ.ReapingFlames2) == 0 then
+        return cast(AZ.ReapingFlames2, 'target')
+    end
+				 if castable(AZ.ReapingFlames3) and -spell(AZ.ReapingFlames3) == 0 then
+        return cast(AZ.ReapingFlames3, 'target')
+    end
+	
+	--4
+	if delay < GetTime() then
+	 if castable(AZ.FocusedAzeriteBeam1) and -spell(AZ.FocusedAzeriteBeam1) == 0 then
+        return cast(AZ.FocusedAzeriteBeam1, 'target')
+    end
+			 if castable(AZ.FocusedAzeriteBeam2) and -spell(AZ.FocusedAzeriteBeam2) == 0 then
+        return cast(AZ.FocusedAzeriteBeam2, 'target')
+    end
+				 if castable(AZ.FocusedAzeriteBeam3) and -spell(AZ.FocusedAzeriteBeam3) == 0 then
+        return cast(AZ.FocusedAzeriteBeam3, 'target')
+    end
+	 delay = GetTime() + 1.4
+end	
+	--5
+	
+	 if castable(AZ.PurifyingBlast1) and -spell(AZ.PurifyingBlast1) == 0 then
+        return cast(AZ.PurifyingBlast1, 'target')
+    end
+			 if castable(AZ.PurifyingBlast2) and -spell(AZ.PurifyingBlast2) == 0 then
+        return cast(AZ.PurifyingBlast2, 'target')
+    end
+				 if castable(AZ.PurifyingBlast3) and -spell(AZ.PurifyingBlast3) == 0 then
+        return cast(AZ.PurifyingBlast3, 'target')
+    end
+	
+	--6
+	
+	 if castable(AZ.ConcentratedFlame1) and -spell(AZ.ConcentratedFlame1) == 0 then
+        return cast(AZ.ConcentratedFlame1, 'target')
+    end
+			 if castable(AZ.ConcentratedFlame2) and -spell(AZ.ConcentratedFlame2) == 0 then
+        return cast(AZ.ConcentratedFlame2, 'target')
+    end
+				 if castable(AZ.ConcentratedFlame3) and -spell(AZ.ConcentratedFlame3) == 0 then
+        return cast(AZ.ConcentratedFlame3, 'target')
+    end
+	
+	--7
+			
+	 if castable(AZ.TheUnboundForce1) and -spell(AZ.TheUnboundForce1) == 0 then
+        return cast(AZ.TheUnboundForce1, 'target')
+    end
+			 if castable(AZ.TheUnboundForce2) and -spell(AZ.TheUnboundForce2) == 0 then
+        return cast(AZ.TheUnboundForce2, 'target')
+    end
+				 if castable(AZ.TheUnboundForce3) and -spell(AZ.TheUnboundForce3) == 0 then
+        return cast(AZ.TheUnboundForce3, 'target')
+    end
+end
+
+if talent(2, 3) and (target.debuff(SB.Doom).down or target.debuff(SB.Doom).remains < 3.5) then return cast(SB.Doom, 'target') end
+if talent(2, 2) and castable(SB.PowerSiphon) and impCount >= 2 then return cast(SB.PowerSiphon) end
+
+if talent(1, 3) and castable(SB.BilescourgeBombers) and player.power.soulshards.actual >= 2 and enemyCount > 3 then return cast(SB.BilescourgeBombers, 'ground') end
+
+
+
+
 
 local currentTime = {}
 local stalkerupTime = {}
 
-print('Imps Up:' .. impCount)
-print('Dreadstalkers Up:' .. stalkerCount)
 currentTime = GetServerTime()
-stalkerupTime = currentTime - stalkerspawnTime
-print('Dreadstalkers Uptime:' .. stalkerupTime)
+
 
 		-- Blood Fury - only used if playing an Orc
 		-- if castable(SB.BloodFury) and -spell(SB.BloodFury) == 0 then
@@ -146,13 +374,14 @@ print('Dreadstalkers Uptime:' .. stalkerupTime)
 			return cast(SB.HealthFunnel)
 		end
 		
+		
 		-- Implosion for AoE and buff uptime (Azerite trait Explosive Potential)
-		if castable(SB.Implosion) and (not buff(SB.ExplosivePotential).up or buff(SB.ExplosivePotential).remains < 2) and impCount >= 3 and target.distance <= 40 then
+		if not castable(SB.SummonDemonicTyrant) and castable(SB.Implosion) and (not buff(SB.ExplosivePotential).up or buff(SB.ExplosivePotential).remains < 2) and impCount >= 3 and target.distance <= 40 then
 			return cast(SB.Implosion, 'target')
 		end
 
 		-- Call Dreadstalkers with Demonic Calling buff
-		if castable(SB.CallDreadStalkers) and player.buff(SB.DemonicCalling) and player.power.soulshards.actual >= 1 then
+		if castable(SB.CallDreadStalkers) and player.buff(SB.DemonicCalling).up and player.power.soulshards.actual >= 1 then
 			return cast(SB.CallDreadStalkers, 'target')
 		end
 
@@ -177,9 +406,9 @@ print('Dreadstalkers Uptime:' .. stalkerupTime)
 		end
 
 		-- Summon Demonic Tyrant - best to use when you have many demons summoned!
-		if castable(SB.SummonDemonicTyrant) and impCount >= 3 and -spell(SB.CallDreadStalkers).remains > 10 then
-			return cast(SB.SummonDemonicTyrant)
-		end
+		-- if castable(SB.SummonDemonicTyrant) and impCount >= 3 and -spell(SB.CallDreadStalkers).remains > 10 then
+			-- return cast(SB.SummonDemonicTyrant)
+		-- end
 
 		-- Hand of Gul'dan filler
 		if castable(SB.HandOfGuldan) and player.power.soulshards.actual >= 3 and  not spell(SB.HandOfGuldan).lastcast then
@@ -187,7 +416,8 @@ print('Dreadstalkers Uptime:' .. stalkerupTime)
 		end
 
 		-- Demonbolt @ 2+ stacks of Demonic Core
-		if castable(SB.Demonbolt) and player.buff(SB.DemonicCore).count >= 2 then
+		if castable(SB.Demonbolt) and (player.buff(SB.DemonicCore).up or player.buff(SB.DemonHeartBuff).up) then
+		macro('/stopcasting')
 			return cast(SB.Demonbolt, 'target')
 		end
 		
@@ -206,9 +436,7 @@ print('Dreadstalkers Uptime:' .. stalkerupTime)
 		end
 		
 		-- Bilescourge Bombers
-		if castable(SB.BilescourgeBombers) and -spell(SB.BilescourgeBombers) == 0 and player.power.soulshards.actual >= 2 then
-			return cast(SB.BilescourgeBombers, 'ground')
-		end
+
 		
 		-- Shadowbolt spam to generate shards
 		if castable(SB.ShadowBolt2) then
@@ -291,8 +519,8 @@ end
 -- This is what actually tells DR about your custom rotation
 dark_addon.rotation.register({
     spec = dark_addon.rotation.classes.warlock.demonology,
-    name = 'RexDemoLock',
-    label = 'Rex Demonology Warlock',
+    name = 'FixDemo',
+    label = 'Fixed Rex Demonology Warlock',
     combat = combat,
     resting = resting,
     interface = interface
