@@ -3,23 +3,26 @@
 1. Priest Shadow
 3. Warrior Arms\Fury
 4. Sub rogue
-
+5. Fire Mage
+6. Destro Warlock
 - CopyPasted Profiles:
-1. Restoration Dru
-2. Balance Dru
-3. Git Rotations
+7. Restoration Dru
+8. Balance Dru
+9. Git Rotations
 
 Status:
 
 0. Git Rotations (Rex&PAL&Ferib&Rotations&Nikpool) - unknown, probably work, but a bit UD.
 1. Priest Shadow - Greate
 2. Feral Dru - Greate
-3. Frost DK - R.I.P (mb later)
+3. Frost DK - R.I.P (mb later) (never, kek)
 4. Warrior Arms - Fine
 5. Warrior Fury - Fine
 6. Balance - Fine
 7. Restoration - Greate
-8 SubR - Fine
+8. SubR - Fine
+9. Fire - Fine (?)
+10. Destro - Unknw (test...)
 
 ## Macros
 - Some macro for Feral:
