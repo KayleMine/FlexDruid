@@ -151,7 +151,7 @@ end
 
 
 
-if toggle('cooldowns', false) and target.alive and target.enemy and player.alive and not player.channeling() then
+if toggle('cooldowns', false) and target.alive and target.enemy and player.alive and not player.channeling() and not player.moving  then
 if trink() then return end
 if castable(SB.DarkSoul) then
 return cast(SB.DarkSoul)
