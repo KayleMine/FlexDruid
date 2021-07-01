@@ -131,36 +131,8 @@ frame:SetScript("OnEvent", function(self, event)
 end)
 
 
-local function combat()
-local summon = dark_addon.settings.fetch("Demon_settings_summon")
-  if GetCVar("nameplateShowEnemies") == '0' then
-    SetCVar("nameplateShowEnemies", 1)
-  end
-  
-  macro('/cqs')
-  
-  local enemyCount = enemies.around(8)
-  if enemyCount == 0 then enemyCount = 1 end
-  
-if target.alive and target.enemy and player.alive and not player.channeling() then
-if toggle('cooldowns', false) and not player.moving then 
 
-if not talent(7, 2) then
-if castable(SB.SummonDemonicTyrant) then return cast(SB.SummonDemonicTyrant, 'target') end 
-end
-
-
-if talent(7, 2) then
-
-if castable(SB.SummonDemonicTyrant) and impCount >= 4 then
- return cast(SB.SummonDemonicTyrant, 'target') 
-end
-end
-
-
-
-
-
+local function trink()
 -- attention indian code
   local wrist = GetInventoryItemID("player", 6)
   -- local belt = GetInventoryItemID("player", 8)
@@ -186,11 +158,11 @@ end
 
 	end
 
-    if GetItemCooldown(Trinket14) == 0 and not player.channeling() then
-      macro('/use 14')
+    if GetItemCooldown(Trinket14) == 0 then
+			  macro('/use 14')
     end
 
-	if GetItemCooldown(Trinket13) == 0 and not itemID == 169314 and not player.channeling() then
+	if GetItemCooldown(Trinket13) == 0 then
 			  macro('/use 13')
 	end
 
@@ -207,24 +179,33 @@ end
 		if GetItemCooldown(hands) == 0 and not itemID == 169314  and not player.channeling() then
 			  macro('/use 7')
 	end
-		
-   --Essence start
+end
+setfenv(trink, dark_addon.environment.env)
+
+local function azer()
+--Essence start
+print('trigger 1')
+if toggle('cooldowns', false) then
+print('trigger 2')
    	local delay = 0
    
    --burst essences
 
 	--1
-
+	if delay < GetTime() then
     if castable(AZ.GuardianofAzeroth1) and -spell(AZ.GuardianofAzeroth1) == 0 then
+	print('trigger 3 1')
     return cast(AZ.GuardianofAzeroth1, 'target')
     end 
 	    if castable(AZ.GuardianofAzeroth2) and -spell(AZ.GuardianofAzeroth2) == 0 then
+		print('trigger 3 2')
         return cast(AZ.GuardianofAzeroth2, 'target')
 		end 
 		    if castable(AZ.GuardianofAzeroth3) and -spell(AZ.GuardianofAzeroth3) == 0 then
+			print('trigger 3 3')
 			return cast(AZ.GuardianofAzeroth3, 'target')
 			end 
-	
+	delay = GetTime() + 1.5 end
 	--2
 	
     if castable(AZ.MemoryofLucidDreams1) and -spell(AZ.MemoryofLucidDreams1) == 0 then
@@ -356,6 +337,96 @@ end
 				 if castable(AZ.TheUnboundForce3) and -spell(AZ.TheUnboundForce3) == 0 then
         return cast(AZ.TheUnboundForce3, 'target')
     end
+	end
+end
+setfenv(azer, dark_addon.environment.env)
+
+local function combat()
+
+if not GetCVar("PetExistCheck") then
+return RegisterCVar("PetExistCheck", 2)
+end
+
+local summon = dark_addon.settings.fetch("Demon_settings_summon")
+  if GetCVar("nameplateShowEnemies") == '0' then
+    SetCVar("nameplateShowEnemies", 1)
+  end
+  
+  macro('/cqs')
+  
+  local enemyCount = enemies.around(8)
+  if enemyCount == 0 then enemyCount = 1 end
+  
+  if not pet.exists and player.power.soulshards.actual >= 2 then SetCVar("PetExistCheck", 0) end
+  
+  if pet.exists then SetCVar("PetExistCheck", 1) end    
+  
+  
+if target.alive and target.enemy and player.alive and not player.channeling() then
+
+
+if GetCVar("PetExistCheck")  == '0' then 
+if player.power.soulshards.actual >= 2 then 
+if not pet.exists and not player.moving and not player.channeling() then
+if not talent(6, 3) then 
+if not spell(SB.Succub).lastcast or not spell(SB.FelGuard).lastcast or not spell(SB.FelHunter).lastcast  or not spell(SB.Voidwalker).lastcast or not spell(SB.Impp).lastcast then
+	if (summon == "Succub") and -spell(SB.Succub) == 0 then
+      return cast(SB.Succub)
+    end
+	if (summon == "FelGuard") and -spell(SB.FelGuard) == 0 then
+      return cast(SB.FelGuard)
+    end						
+	if (summon == "FelHunter") and -spell(SB.FelHunter) == 0 then
+      return cast(SB.FelHunter)
+    end		
+	if (summon == "Voidwalker") and -spell(SB.Voidwalker) == 0 then
+      return cast(SB.Voidwalker)
+    end	
+	if (summon == "Impp") and -spell(SB.Impp) == 0 then
+      return cast(SB.Impp)
+    end	
+end
+
+if talent(6, 3) and (not spell(SB.GrimoireFelguard).lastcast) then
+return cast(SB.GrimoireFelguard)
+end
+end
+end
+elseif not pet.exists then SetCVar("PetExistCheck", 1) end
+end
+
+
+if GetCVar("PetExistCheck")  == '1' then  
+if trink() then return end
+--if azer() then return end
+if toggle('cooldowns', false) and not player.moving then 
+
+if not talent(7, 2) then
+if castable(SB.SummonDemonicTyrant) then return cast(SB.SummonDemonicTyrant, 'target') end 
+end
+
+
+if talent(7, 2) then
+
+if castable(SB.SummonDemonicTyrant) and impCount >= 4 then
+ return cast(SB.SummonDemonicTyrant, 'target') 
+end
+end
+end
+if toggle('cooldowns', false) then 
+
+if not talent(7, 2) then
+if castable(SB.SummonDemonicTyrant) then return cast(SB.SummonDemonicTyrant, 'target') end 
+end
+
+
+if talent(7, 2) then
+
+if castable(SB.SummonDemonicTyrant) and impCount >= 4 then
+ return cast(SB.SummonDemonicTyrant, 'target') 
+end
+end
+
 end
 
 if talent(2, 3) and (target.debuff(SB.Doom).down or target.debuff(SB.Doom).remains < 3.5) then return cast(SB.Doom, 'target') end
@@ -379,7 +450,7 @@ currentTime = GetServerTime()
 		-- end
 
 		-- Health Funnel to heal your pet while in combat
-		if pet.exists and castable(SB.HealthFunnel) and player.health.percent >= 50 and pet.health.percent <= 50 then
+		if pet.exists and castable(SB.HealthFunnel) and player.health.percent >= 75 and pet.health.percent <= 50 then
 			return cast(SB.HealthFunnel)
 		end
 		
@@ -405,7 +476,7 @@ currentTime = GetServerTime()
 		end
 
 		-- Demonic Strength
-		if castable(SB.DemonicStrength) and not pet.buff(SB.Felstorm).up and -spell(SB.DemonicStrength) == 0 then
+		if pet.exists and castable(SB.DemonicStrength) and not pet.buff(SB.Felstorm).up and -spell(SB.DemonicStrength) == 0 then
 			return cast(SB.DemonicStrength)
 		end
 
@@ -440,7 +511,7 @@ currentTime = GetServerTime()
 			return cast(SB.SummonVilefiend)
 		end
 		-- Soul Strike
-		if castable(SB.SoulStrike) and -spell(SB.SoulStrike) == 0 then
+		if pet.exists and castable(SB.SoulStrike) and -spell(SB.SoulStrike) == 0 then
 			return cast(SB.SoulStrike)
 		end
 		
@@ -457,33 +528,7 @@ end
 
 
 
-if not pet.exists and not player.moving and not player.channeling() then
 
-if not talent(6, 3) then 
-if not spell(SB.Succub).lastcast or not spell(SB.FelGuard).lastcast or not spell(SB.FelHunter).lastcast  or not spell(SB.Voidwalker).lastcast or not spell(SB.Impp).lastcast then
-	if (summon == "Succub") and -spell(SB.Succub) == 0 then
-      return cast(SB.Succub)
-    end
-	if (summon == "FelGuard") and -spell(SB.FelGuard) == 0 then
-      return cast(SB.FelGuard)
-    end						
-	if (summon == "FelHunter") and -spell(SB.FelHunter) == 0 then
-      return cast(SB.FelHunter)
-    end		
-	if (summon == "Voidwalker") and -spell(SB.Voidwalker) == 0 then
-      return cast(SB.Voidwalker)
-    end	
-	if (summon == "Impp") and -spell(SB.Impp) == 0 then
-      return cast(SB.Impp)
-    end	
-end
-
-if talent(6, 3) and (not spell(SB.GrimoireFelguard).lastcast) then
-return cast(SB.GrimoireFelguard)
-end
-
-end
-end
 
 
 
@@ -500,9 +545,14 @@ end
 end
 
 end
-
+end
 
 local function resting()
+
+if not GetCVar("PetExistCheck") then
+return RegisterCVar("PetExistCheck", 2)
+end
+
 local summon = dark_addon.settings.fetch("Demon_settings_summon")
 
 if toggle('indiantoggler' ,false) then
