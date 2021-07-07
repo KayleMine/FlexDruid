@@ -23,6 +23,7 @@ Status:
 8. SubR - Fine
 9. Fire - Fine (?)
 10. Destro - Unknw (test...)
+11. Demon - Should be fine.
 
 ## Macros
 - Some macro for Feral:
