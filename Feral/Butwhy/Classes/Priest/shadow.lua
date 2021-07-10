@@ -1220,7 +1220,7 @@ end -- gui end
 		local powerword = dark_addon.settings.fetch('KiraFeral_settings_powerword', true)
 		local boostspeed = dark_addon.settings.fetch('KiraFeral_settings_boostspeed', true)
 		local shieldonly = dark_addon.settings.fetch('KiraFeral_settings_shieldonly', true)
-		local LevitateBuff = dark_addon.settings.fetch('KiraFeral_settings_LevitateBuff', true)
+	--	local LevitateBuff = dark_addon.settings.fetch('KiraFeral_settings_LevitateBuff', true)
 
 
 if not player.alive then
@@ -1249,9 +1249,9 @@ end
 	return cast(SB.PowerShield, 'player')
 	end 
 
-	if LevitateBuff == true and IsFalling and player.buff(SB.Levitate).down then
-	return cast(SB.Levitate, 'player')
-	end
+	--if LevitateBuff == true and IsFalling and player.buff(SB.Levitate).down then
+--	return cast(SB.Levitate, 'player')
+	--end
 
 	if castable(SB.ShadowForm) and player.buff(SB.ShadowForm).down then
 	return cast(SB.ShadowForm)
@@ -1387,7 +1387,7 @@ cat1:Show()
 				{ type = 'rule' },
 				{ type = 'header', text = "Полезная хуета.", align = 'CENTER' },
 
-				{ key = 'LevitateBuff', type = 'checkbox', text = 'Левитация', desc = 'Обновлять баф если не в бою.', default = false },
+			--	{ key = 'LevitateBuff', type = 'checkbox', text = 'Левитация', desc = 'Обновлять баф если не в бою.', default = false },
 				{ key = 'powerword', type = 'checkbox', text = 'Баф на хп', desc = 'Обновлять?', default = false },
 				{ key = 'boostspeed', type = 'checkbox', text = 'Щиток для поднятия хасты', desc = '', default = false },
 				{ key = 'shieldonly', type = 'checkbox', text = 'Просто обновлять щиток.', desc = '', default = false },
@@ -1745,7 +1745,7 @@ cat1:Show()
 				{ type = 'rule' },
 				{ type = 'header', text = "USEFUL STUFF.", align = 'CENTER' },
 
-				{ key = 'LevitateBuff', type = 'checkbox', text = 'Levitate Buff', desc = 'Update Levitate buff if not in combat.', default = false },
+			--	{ key = 'LevitateBuff', type = 'checkbox', text = 'Levitate Buff', desc = 'Update Levitate buff if not in combat.', default = false },
 				{ key = 'powerword', type = 'checkbox', text = 'Power Word: Fortitude', desc = 'Use Power Word: Fortitude?', default = false },
 				{ key = 'boostspeed', type = 'checkbox', text = 'Use shield to speed up movment', desc = '', default = false },
 				{ key = 'shieldonly', type = 'checkbox', text = 'Just update shield buff', desc = 'Just update shield buff?', default = false },
