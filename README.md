@@ -5,10 +5,11 @@
 4. Sub rogue
 5. Fire Mage
 6. Destro Warlock
+7. Demon Warlock
 - CopyPasted Profiles:
-7. Restoration Dru
-8. Balance Dru
-9. Git Rotations
+8. Restoration Dru
+9. Balance Dru
+10. Git Rotations
 
 Status:
 
