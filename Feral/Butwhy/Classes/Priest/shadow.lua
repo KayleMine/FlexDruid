@@ -779,7 +779,7 @@
 
 			
 
-	   if Dispersion and -player.health <= Dispersion then
+	   if Dispersion and castable(SB.Dispersion) and -player.health <= Dispersion then
 			return cast(SB.Dispersion)
 		  end
 		  
@@ -911,18 +911,18 @@
 			end 
 
 	--3 uncomment to cast (req. 8.3.0+ patch)
-		-- if delay < GetTime() then
-	-- if toggle("cooldowns", false) and castable(SB.MomentofGlory1) then
-    -- return cast(SB.MomentofGlory1, 'player')
-    -- end 
-	    -- if toggle("cooldowns", false) and castable(SB.MomentofGlory2) and -spell(SB.MomentofGlory2) == 0 then
-        -- return cast(SB.MomentofGlory2, 'target')
-		-- end 
-		    -- if toggle("cooldowns", false) and castable(SB.MomentofGlory3) and -spell(SB.MomentofGlory3) == 0 then
-			-- return cast(SB.MomentofGlory3, 'target')
-			-- end 
-		-- delay = GetTime() + 1.5
-	-- end	
+		if delay < GetTime() then
+	if toggle("cooldowns", false) and castable(SB.MomentofGlory1) then
+    return cast(SB.MomentofGlory1, 'player')
+    end 
+	    if toggle("cooldowns", false) and castable(SB.MomentofGlory2) and -spell(SB.MomentofGlory2) == 0 then
+        return cast(SB.MomentofGlory2, 'target')
+		end 
+		    if toggle("cooldowns", false) and castable(SB.MomentofGlory3) and -spell(SB.MomentofGlory3) == 0 then
+			return cast(SB.MomentofGlory3, 'target')
+			end 
+		delay = GetTime() + 1.5
+	end	
 			
 	--4
 	
@@ -970,15 +970,15 @@
 		
 	--3  uncomment to cast (req. 8.3.0+ patch)
 	
-	 -- if castable(SB.ReapingFlames1) and -spell(SB.ReapingFlames1) == 0 then
-        -- return cast(SB.ReapingFlames1, 'target')
-    -- end
-			 -- if castable(SB.ReapingFlames2) and -spell(SB.ReapingFlames2) == 0 then
-        -- return cast(SB.ReapingFlames2, 'target')
-    -- end
-				 -- if castable(SB.ReapingFlames3) and -spell(SB.ReapingFlames3) == 0 then
-        -- return cast(SB.ReapingFlames3, 'target')
-    -- end
+	 if castable(SB.ReapingFlames1) and -spell(SB.ReapingFlames1) == 0 then
+        return cast(SB.ReapingFlames1, 'target')
+    end
+			 if castable(SB.ReapingFlames2) and -spell(SB.ReapingFlames2) == 0 then
+        return cast(SB.ReapingFlames2, 'target')
+    end
+				 if castable(SB.ReapingFlames3) and -spell(SB.ReapingFlames3) == 0 then
+        return cast(SB.ReapingFlames3, 'target')
+    end
 	
 	--4
 	if delay < GetTime() then
