@@ -41,9 +41,9 @@
   <Script file="Butwhy\Classes\dk\dodik.lua" />
   <Script file="Butwhy\Classes\Warrior\Arms.lua" />
   <Script file="Butwhy\Classes\Warrior\Fury.lua" />
-  <Script file="Butwhy\Classes\Mage\FireMage.lua" />
-  <Script file="Butwhy\Classes\Warlock\Destro.lua"/>
-	
+  <Script file="Butwhy\Classes\Warlock\Demon.lua" />
+  <Script file="Butwhy\Classes\Warlock\Destro.lua" />
+  
 	<Script file="Butwhy\GitHubRotations\RexArmsWar.lua" /> 
 	<Script file="Butwhy\GitHubRotations\RexFuryWar.lua" />
 	<Script file="Butwhy\GitHubRotations\RexProtWar.lua" />
@@ -60,8 +60,6 @@
 	<Script file="Butwhy\GitHubRotations\RexMWMonk.lua" />
 	<Script file="Butwhy\GitHubRotations\RexGuDr.lua" />
 	<Script file="Butwhy\GitHubRotations\RexAffLock.lua" />
-	<Script file="Butwhy\GitHubRotations\RexDemoLock.lua" />
-	<Script file="Butwhy\GitHubRotations\RexDestLock.lua" />
 	<Script file="Butwhy\GitHubRotations\RexEnhSha.lua" />
 	<Script file="Butwhy\GitHubRotations\RexRestSha.lua" />
 	<Script file="Butwhy\GitHubRotations\RexUnhDK.lua" />
