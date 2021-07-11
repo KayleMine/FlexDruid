@@ -43,7 +43,7 @@
   <Script file="Butwhy\Classes\Warrior\Fury.lua" />
   <Script file="Butwhy\Classes\Warlock\Demon.lua" />
   <Script file="Butwhy\Classes\Warlock\Destro.lua" />
-  
+  <Script file="Butwhy\Classes\Hunter\Bm.lua"/>  
 	<Script file="Butwhy\GitHubRotations\RexArmsWar.lua" /> 
 	<Script file="Butwhy\GitHubRotations\RexFuryWar.lua" />
 	<Script file="Butwhy\GitHubRotations\RexProtWar.lua" />
