@@ -25,6 +25,7 @@ Status:
 9. Fire - Fine (?)
 10. Destro - Unknw (test...)
 11. Demon - Should be fine.
+12. BM - W.i.P
 
 ## Macros
 - Some macro for Feral:
