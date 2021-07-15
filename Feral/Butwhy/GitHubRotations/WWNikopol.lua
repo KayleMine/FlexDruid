@@ -1,10 +1,11 @@
 -- Windwalker Monk for 8.1 by Nikopol - 12/2018
 -- Talents: 1 - 2 - - 3 2
+-- lcontrol - StormEarthFire
 -- Left Alt - Touch of Karma
 -- Left Shift - Vivify self
 local dark_addon = dark_interface
 local SB = m2jue4dgc56acfzz
-
+SB.stormbuff = 137639
 local bloodlust_buffs = { 32182, 90355, 80353, 2825, 146555 }
 local function has_bloodlust(unit)
   for i = 1, #bloodlust_buffs do
@@ -45,6 +46,24 @@ local function last_combo(spell)
   return last_combo_spell == spell
 end
 
+local function StormEarthFire()
+if GetCVar("StormEarthFire")  == '1' or GetCVar("StormEarthFire")  == '2'  then
+if castable(SB.StormEarthFire) and (spell(SB.StormEarthFire).charges == 2 or (spell(SB.FistofFury).cooldown <= 6 and player.power.chi.actual >= 3 and spell(SB.RisingSunKick).cooldown <= 1) or (UnitLevel("target") == -1 and time_to_die(group, target) <= 15)) then
+SetCVar("StormEarthFire", 0)
+end
+end
+
+if GetCVar("StormEarthFire")  == '0' then
+      if castable(SB.StormEarthFire) and (not player.buff(SB.stormbuff).up) then
+				return cast(SB.StormEarthFire)
+else
+  SetCVar("StormEarthFire", 1)
+end
+end
+
+end
+setfenv(StormEarthFire, dark_addon.environment.env)
+
 local function gcd()
   if not player.alive then return end
   
@@ -62,7 +81,18 @@ local function gcd()
 end
 
 local function combat()
+if modifier.lcontrol and toggle('cooldowns', false) then
+	return cast(SB.StormEarthFire, 'target')
+end
   if not player.alive then return end
+  
+      if toggle('cooldowns', false) then 
+	  if StormEarthFire() then return end
+	  end
+	  
+if not GetCVar("StormEarthFire") then
+return RegisterCVar("StormEarthFire", 2)
+end
   
   if GetCVar("nameplateShowEnemies") == '0' then
     SetCVar("nameplateShowEnemies", 1)
@@ -161,11 +191,7 @@ local function combat()
       if castable(SB.TouchofDeath) and time_to_die(group, target) > 10 then
         return cast(SB.TouchofDeath, target)
       end
-      
-      if castable(SB.StormEarthFire) and (spell(SB.StormEarthFire).charges == 2 or (spell(SB.FistofFury).cooldown <= 6 and player.power.chi.actual >= 3 and spell(SB.RisingSunKick).cooldown <= 1) or (UnitLevel("target") == -1 and time_to_die(group, target) <= 15)) then
-        return cast(SB.StormEarthFire)
-      end
-      
+
       if castable(SB.Serenity) and (spell(SB.RisingSunKick).cooldown <= 2 or (UnitLevel("target") == -1 and time_to_die(group, target) <= 12)) then
         return cast(SB.Serenity)
       end
@@ -290,7 +316,9 @@ end
 
 local function resting()
   if not player.alive then return end
-  
+  if not GetCVar("StormEarthFire") then
+return RegisterCVar("StormEarthFire", 2)
+end
   if modifier.lshift and castable(SB.Vivify) then
     return cast(SB.Vivify, player)
   end
@@ -303,8 +331,54 @@ local function resting()
     return cast(SB.DetoxDPS, player)
   end
 end
+-- lcontrol - Storm Earth Fire
+-- Left Alt - Touch of Karma
+-- Left Shift - Vivify self
 
 function interface()
+
+    local settings = {
+        key = 'nik_setts',
+        title = 'Windwalker',
+        width = 300,
+        height = 500,
+        resize = true,
+        show = false,
+        template = {
+            { type = 'header', text = "Windwalker Info", align = 'CENTER'},
+            { type = 'header', text = 'Talents', align = 'CENTER' },
+            { type = 'text', text = 'Talents: 1 - 2 - - 3 2', align = 'CENTER' },
+            { type = 'text', text = 'LControl - Storm Earth Fire', align = 'CENTER' },
+			{ type = 'text', text = 'Left Alt - Touch of Karma', align = 'CENTER' },
+			{ type = 'text', text = 'Left Shift - Vivify self', align = 'CENTER' },			
+        }
+    }
+
+    configWindow = dark_addon.interface.builder.buildGUI(settings)
+
+    dark_addon.interface.buttons.add_toggle({
+        name = 'settings',
+        label = 'Rotation Info',
+        font = 'dark_addon_icon',
+        on = {
+            label = dark_addon.interface.icon('cog'),
+            color = dark_addon.interface.color.cyan,
+            color2 = dark_addon.interface.color.dark_cyan
+        },
+        off = {
+            label = dark_addon.interface.icon('cog'),
+            color = dark_addon.interface.color.grey,
+            color2 = dark_addon.interface.color.dark_grey
+        },
+        callback = function(self)
+            if configWindow.parent:IsShown() then
+                configWindow.parent:Hide()
+            else
+                configWindow.parent:Show()
+            end
+        end
+    })
+
   dark_addon.interface.buttons.add_toggle({
     name = 'dispell',
     label = 'Auto Dispell',
@@ -342,6 +416,7 @@ dark_addon.rotation.register({
   gcd = gcd,
   combat = combat,
   resting = resting,
+  StormEarthFire = StormEarthFire,
   interface = interface
 })
 
