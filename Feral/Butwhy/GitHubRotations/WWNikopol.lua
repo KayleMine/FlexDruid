@@ -5,6 +5,7 @@
 -- Left Shift - Vivify self
 local dark_addon = dark_interface
 local SB = m2jue4dgc56acfzz
+local AZ = dark_addon.rotation.spellbooks.azerite
 SB.stormbuff = 137639
 local bloodlust_buffs = { 32182, 90355, 80353, 2825, 146555 }
 local function has_bloodlust(unit)
@@ -64,6 +65,7 @@ end
 end
 setfenv(StormEarthFire, dark_addon.environment.env)
 
+
 local function gcd()
   if not player.alive then return end
   
@@ -81,9 +83,225 @@ local function gcd()
 end
 
 local function combat()
+ 
+  
 if modifier.lcontrol and toggle('cooldowns', false) then
 	return cast(SB.StormEarthFire, 'target')
 end
+if toggle('cooldowns', false) then
+
+-- attention indian code
+  local wrist = GetInventoryItemID("player", 6)
+  -- local belt = GetInventoryItemID("player", 8)
+  local ring1 = GetInventoryItemID("player", 11)
+  local ring2 = GetInventoryItemID("player", 12)
+  local hands = GetInventoryItemID("player", 7)
+   
+   
+  local Trinket13 = GetInventoryItemID("player", 13)
+  local Trinket14 = GetInventoryItemID("player", 14)
+  local itemID = GetInventoryItemID("player", 13) 
+  local itemID2 = GetInventoryItemID("player", 14) 
+
+
+	if itemID == 169314 then
+
+
+		if GetItemCooldown(Trinket13) == 0 and not player.moving then
+		  macro('/stopcasting')
+		  macro('/use 13')
+		end
+	end
+	
+	
+	if itemID2 == 169314 then
+
+
+		if GetItemCooldown(Trinket14) == 0 and not player.moving then
+		  macro('/stopcasting')
+		  macro('/use 14')
+		end
+	end
+
+    if GetItemCooldown(Trinket13) == 0 and not player.channeling() then
+			--  macro('/stopcasting')
+      macro('/use 13')
+    end
+
+	if GetItemCooldown(Trinket14) == 0 and not player.channeling() then
+			--  macro('/stopcasting')
+			  macro('/use 14')
+	end
+
+
+	if GetItemCooldown(ring1) == 0 and not player.channeling() then
+			  macro('/use 11')
+	end
+	
+	
+		if GetItemCooldown(ring2) == 0  and not player.channeling() then
+			  macro('/use 12')
+	end
+	
+		if GetItemCooldown(hands) == 0  and not player.channeling() then
+			  macro('/use 7')
+	end
+
+end
+
+  if player.alive and target.alive and target.enemy then
+  if toggle('cooldowns', false) then
+     --Essence start
+   	local delay = 0
+   
+   --burst essences
+
+	--1
+
+    if castable(AZ.GuardianofAzeroth1) and -spell(AZ.GuardianofAzeroth1) == 0 then
+    return cast(AZ.GuardianofAzeroth1, 'target')
+    end 
+	    if castable(AZ.GuardianofAzeroth2) and -spell(AZ.GuardianofAzeroth2) == 0 then
+        return cast(AZ.GuardianofAzeroth2, 'target')
+		end 
+		    if castable(AZ.GuardianofAzeroth3) and -spell(AZ.GuardianofAzeroth3) == 0 then
+			return cast(AZ.GuardianofAzeroth3, 'target')
+			end 
+	
+	--2
+	
+    if castable(AZ.MemoryofLucidDreams1) and -spell(AZ.MemoryofLucidDreams1) == 0 then
+    return cast(AZ.MemoryofLucidDreams1, 'target')
+    end 
+	    if castable(AZ.MemoryofLucidDreams2) and -spell(AZ.MemoryofLucidDreams2) == 0 then
+        return cast(AZ.MemoryofLucidDreams2, 'target')
+		end 
+		    if castable(AZ.MemoryofLucidDreams3) and -spell(AZ.MemoryofLucidDreams3) == 0 then
+			return cast(AZ.MemoryofLucidDreams3, 'target')
+			end 
+
+	--3 uncomment to cast (req. 8.3.0+ patch)
+	
+		if delay < GetTime() then
+	if castable(AZ.MomentofGlory1) then
+    return cast(AZ.MomentofGlory1, 'player')
+    end 
+	    if castable(AZ.MomentofGlory2) and -spell(AZ.MomentofGlory2) == 0 then
+        return cast(AZ.MomentofGlory2, 'target')
+		end 
+		    if castable(AZ.MomentofGlory3) and -spell(AZ.MomentofGlory3) == 0 then
+			return cast(AZ.MomentofGlory3, 'target')
+			end 
+		delay = GetTime() + 1.5
+	end	
+			
+	--4
+	
+    if castable(AZ.WorldveinResonance1) and -spell(AZ.WorldveinResonance1) == 0 then
+    return cast(AZ.WorldveinResonance1, 'target')
+    end 
+	    if castable(AZ.WorldveinResonance2) and -spell(AZ.WorldveinResonance2) == 0 then
+        return cast(AZ.WorldveinResonance2, 'target')
+		end 
+		    if castable(AZ.WorldveinResonance3) and -spell(AZ.WorldveinResonance3) == 0 then
+			return cast(AZ.WorldveinResonance3, 'target')
+			end 
+
+	
+	
+	
+	--damage essences
+	
+	
+	
+	--1 
+	
+	 if castable(AZ.AnimaofDeath1) and -spell(AZ.AnimaofDeath1) == 0 then
+        return cast(AZ.AnimaofDeath1, 'target')
+    end
+			 if castable(AZ.AnimaofDeath2) and -spell(AZ.AnimaofDeath2) == 0 then
+        return cast(AZ.AnimaofDeath2, 'target')
+    end
+				 if castable(AZ.AnimaofDeath3) and -spell(AZ.AnimaofDeath3) == 0 then
+        return cast(AZ.AnimaofDeath3, 'target')
+    end
+	
+	--2 
+	
+	 if castable(AZ.BloodoftheEnemy1) and -spell(AZ.BloodoftheEnemy1) == 0 then
+        return cast(AZ.BloodoftheEnemy1, 'target')
+    end
+			 if castable(AZ.BloodoftheEnemy2) and -spell(AZ.BloodoftheEnemy2) == 0 then
+        return cast(AZ.BloodoftheEnemy2, 'target')
+    end
+				 if castable(AZ.BloodoftheEnemy3) and -spell(AZ.BloodoftheEnemy3) == 0 then
+        return cast(AZ.BloodoftheEnemy3, 'target')
+    end
+	
+		
+	--3  uncomment to cast (req. 8.3.0+ patch)
+	
+	 if castable(AZ.ReapingFlames1) and -spell(AZ.ReapingFlames1) == 0 then
+        return cast(AZ.ReapingFlames1, 'target')
+    end
+			 if castable(AZ.ReapingFlames2) and -spell(AZ.ReapingFlames2) == 0 then
+        return cast(AZ.ReapingFlames2, 'target')
+    end
+				 if castable(AZ.ReapingFlames3) and -spell(AZ.ReapingFlames3) == 0 then
+        return cast(AZ.ReapingFlames3, 'target')
+    end
+	
+	--4
+	if delay < GetTime() then
+	 if castable(AZ.FocusedAzeriteBeam1) and -spell(AZ.FocusedAzeriteBeam1) == 0 then
+        return cast(AZ.FocusedAzeriteBeam1, 'target')
+    end
+			 if castable(AZ.FocusedAzeriteBeam2) and -spell(AZ.FocusedAzeriteBeam2) == 0 then
+        return cast(AZ.FocusedAzeriteBeam2, 'target')
+    end
+				 if castable(AZ.FocusedAzeriteBeam3) and -spell(AZ.FocusedAzeriteBeam3) == 0 then
+        return cast(AZ.FocusedAzeriteBeam3, 'target')
+    end
+	 delay = GetTime() + 1.4
+end	
+	--5
+	
+	 if castable(AZ.PurifyingBlast1) and -spell(AZ.PurifyingBlast1) == 0 then
+        return cast(AZ.PurifyingBlast1, 'target')
+    end
+			 if castable(AZ.PurifyingBlast2) and -spell(AZ.PurifyingBlast2) == 0 then
+        return cast(AZ.PurifyingBlast2, 'target')
+    end
+				 if castable(AZ.PurifyingBlast3) and -spell(AZ.PurifyingBlast3) == 0 then
+        return cast(AZ.PurifyingBlast3, 'target')
+    end
+	
+	--6
+	
+	 if castable(AZ.ConcentratedFlame1) and -spell(AZ.ConcentratedFlame1) == 0 then
+        return cast(AZ.ConcentratedFlame1, 'target')
+    end
+			 if castable(AZ.ConcentratedFlame2) and -spell(AZ.ConcentratedFlame2) == 0 then
+        return cast(AZ.ConcentratedFlame2, 'target')
+    end
+				 if castable(AZ.ConcentratedFlame3) and -spell(AZ.ConcentratedFlame3) == 0 then
+        return cast(AZ.ConcentratedFlame3, 'target')
+    end
+	
+	--7
+			
+	 if castable(AZ.TheUnboundForce1) and -spell(AZ.TheUnboundForce1) == 0 then
+        return cast(AZ.TheUnboundForce1, 'target')
+    end
+			 if castable(AZ.TheUnboundForce2) and -spell(AZ.TheUnboundForce2) == 0 then
+        return cast(AZ.TheUnboundForce2, 'target')
+    end
+				 if castable(AZ.TheUnboundForce3) and -spell(AZ.TheUnboundForce3) == 0 then
+        return cast(AZ.TheUnboundForce3, 'target')
+    end
+	end
+	end
+ 
   if not player.alive then return end
   
       if toggle('cooldowns', false) then 
