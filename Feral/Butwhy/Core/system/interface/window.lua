@@ -1161,3 +1161,62 @@ dark_addon.on_ready(function()
   configWindow.parent:Hide()
   dark_addon.econf = configWindow
 end)
+
+local toolkit = { }; 
+toolkit.checkName = function()
+	return UnitName("player")
+end
+toolkit.CheckColor = function()
+	local SelectClass = select(2, UnitClass("player"));
+	if SelectClass == "DEATHKNIGHT" then
+		return "|cffC41E3A"
+	elseif SelectClass == "DRUID" then
+		return "|cffFF7C0A"
+	elseif SelectClass == "HUNTER" then
+		return "|cffAAD372"
+	elseif SelectClass == "MAGE" then
+		return "|cff3FC7EB"
+	elseif SelectClass == "PALADIN" then
+		return "|cffF48CBA"
+	elseif SelectClass == "MONK" then
+		return "|cffAAD372"
+	elseif SelectClass == "DEMONHUNTER" then
+		return "|cff8788EE"
+	elseif SelectClass == "PRIEST" then
+		return "|cffFFFFFF"
+	elseif SelectClass == "ROGUE" then
+		return "|cffFFF468"
+	elseif SelectClass == "SHAMAN" then
+		return "|cff0070DD"
+	elseif SelectClass == "WARLOCK" then
+		return "|cff8788EE"
+	elseif SelectClass == "WARRIOR" then
+		return "|cffC69B6D"
+	end
+end
+toolkit.PlayedServer = function()
+	return GetRealmName()
+end
+toolkit.ChatMessage = function()
+	print("=======================================")
+	print("- Greatings " ..toolkit.CheckColor()..toolkit.checkName(),"!")
+	print("- Your server - |cffFFFF00" ..toolkit.PlayedServer())		
+	print("- GL HF :D")
+	print("=======================================")
+end
+
+local function OnEvent(self, event, isLogin, isReload)
+
+	if isLogin or isReload then
+		toolkit.ChatMessage()
+		PlaySoundFile([[Interface\AddOns\Feral\Butwhy\Core\media\hai.ogg]], "SFX")  
+end
+end
+
+
+
+
+local f = CreateFrame("Frame")
+f:RegisterEvent("PLAYER_ENTERING_WORLD")
+f:SetScript("OnEvent", OnEvent)
+
