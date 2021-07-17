@@ -394,32 +394,32 @@ if target.alive and target.enemy and player.alive and not player.channeling() th
     auto_attack()
   end  	
   
-  local userakeaoe = dark_addon.settings.fetch('KiraFeral_settings_Rake_AOE', true)
-  if userakeaoe and target.alive and target.enemy and player.alive and target.distance < 8 then
-		   local userake = true 
-		   local index = 0
-		   local NotMain = true
-		   local MainTarget = UnitGUID("target")
-		   TargetNearestEnemy()
-		   while(NotMain)
-		   do
-			  local RakeDur
-			  for i = 1, 40 do
-				 name, a, b, c, d, dur = UnitDebuff("target", i, "PLAYER")
-				 if (name == "Rake") then
-					RakeDur = dur   
-				 end
-			  end
-			  if userake and (RakeDur == nil or RakeDur-5 < GetTime()) and target.alive then
-				CastSpellByName("Rake")
-			  end
-			  TargetNearestEnemy()
-			  if(MainTarget == UnitGUID("target") or index == 30) then
-				 NotMain = false
-			  end
-			  index = index + 1
-		   end
-end
+  -- local userakeaoe = dark_addon.settings.fetch('KiraFeral_settings_Rake_AOE', true)
+  -- if userakeaoe and target.alive and target.enemy and player.alive and target.distance < 8 then
+		   -- local userake = true 
+		   -- local index = 0
+		   -- local NotMain = true
+		   -- local MainTarget = UnitGUID("target")
+		   -- TargetNearestEnemy()
+		   -- while(NotMain)
+		   -- do
+			  -- local RakeDur
+			  -- for i = 1, 40 do
+				 -- name, a, b, c, d, dur = UnitDebuff("target", i, "PLAYER")
+				 -- if (name == "Rake") then
+					-- RakeDur = dur   
+				 -- end
+			  -- end
+			  -- if userake and castable(SB.Rake) and (RakeDur == nil or RakeDur-5 < GetTime()) and target.alive then
+				-- CastSpellByName("Rake")
+			  -- end
+			  -- TargetNearestEnemy()
+			  -- if(MainTarget == UnitGUID("target") or index == 30) then
+				 -- NotMain = false
+			  -- end
+			  -- index = index + 1
+		   -- end
+-- end
 
 local BearForm = dark_addon.settings.fetch("KiraFeral_settings_BearForm", 7)
    if BearForm and -player.health <= BearForm then
@@ -478,19 +478,18 @@ local Renewal = dark_addon.settings.fetch("KiraFeral_settings_Renewal", 41)
 			return cast(SB.MemoryofLucidDreams3, 'target')
 			end 
 
-	--3 uncomment to cast (req. 8.3.0+ patch)
-		-- if delay < GetTime() then
-	-- if toggle("cooldowns", false) and castable(SB.MomentofGlory1) then
-    -- return cast(SB.MomentofGlory1, 'player')
-    -- end 
-	    -- if toggle("cooldowns", false) and castable(SB.MomentofGlory2) and -spell(SB.MomentofGlory2) == 0 then
-        -- return cast(SB.MomentofGlory2, 'target')
-		-- end 
-		    -- if toggle("cooldowns", false) and castable(SB.MomentofGlory3) and -spell(SB.MomentofGlory3) == 0 then
-			-- return cast(SB.MomentofGlory3, 'target')
-			-- end 
-		-- delay = GetTime() + 1.5
-	-- end	
+		if delay < GetTime() then
+	if toggle("cooldowns", false) and castable(SB.MomentofGlory1) then
+    return cast(SB.MomentofGlory1, 'player')
+    end 
+	    if toggle("cooldowns", false) and castable(SB.MomentofGlory2) and -spell(SB.MomentofGlory2) == 0 then
+        return cast(SB.MomentofGlory2, 'target')
+		end 
+		    if toggle("cooldowns", false) and castable(SB.MomentofGlory3) and -spell(SB.MomentofGlory3) == 0 then
+			return cast(SB.MomentofGlory3, 'target')
+			end 
+		delay = GetTime() + 1.5
+	end	
 			
 	--4
 	
@@ -538,15 +537,15 @@ local Renewal = dark_addon.settings.fetch("KiraFeral_settings_Renewal", 41)
 		
 	--3  uncomment to cast (req. 8.3.0+ patch)
 	
-	 -- if castable(SB.ReapingFlames1) and -spell(SB.ReapingFlames1) == 0 then
-        -- return cast(SB.ReapingFlames1, 'target')
-    -- end
-			 -- if castable(SB.ReapingFlames2) and -spell(SB.ReapingFlames2) == 0 then
-        -- return cast(SB.ReapingFlames2, 'target')
-    -- end
-				 -- if castable(SB.ReapingFlames3) and -spell(SB.ReapingFlames3) == 0 then
-        -- return cast(SB.ReapingFlames3, 'target')
-    -- end
+	 if castable(SB.ReapingFlames1) and -spell(SB.ReapingFlames1) == 0 then
+        return cast(SB.ReapingFlames1, 'target')
+    end
+			 if castable(SB.ReapingFlames2) and -spell(SB.ReapingFlames2) == 0 then
+        return cast(SB.ReapingFlames2, 'target')
+    end
+				 if castable(SB.ReapingFlames3) and -spell(SB.ReapingFlames3) == 0 then
+        return cast(SB.ReapingFlames3, 'target')
+    end
 	
 	--4
 	if delay < GetTime() then
@@ -2032,7 +2031,7 @@ local function interface()
 		    { type = 'header', text = "            ПОЛЕЗНАЯ ХУЙНЯ." },
 			{ type = 'text', text = '                ' },
 			{ key = 'Felroci', type = 'checkbox', text = 'Свирепый укустолько если есть 50 энергии', desc = 'или больше 50 энергии.', default = true },
-			{ key = 'Rake_AOE', type = 'checkbox', text = 'Глубокие раны АОЕ', desc = 'Юзать раны для АОЕ' },
+			--{ key = 'Rake_AOE', type = 'checkbox', text = 'Глубокие раны АОЕ', desc = 'Юзать раны для АОЕ' },
 			{ key = 'usetrinkets', type = 'checkbox', text = 'АВТО ТРИНЕЧКИ', desc = 'Если есть чо жать', default = true },
 			{ key = 'flex', type = 'checkbox', text = 'Мелд = Баф Доты', desc = 'Только для ночных эльфов. Дать слится с тенью = дать усиленную доту', default = false },
 			{ key = 'flex2', type = 'checkbox', text = 'Калечение', desc = 'Только для пвп, если на цели есть глубокие раны и есть 5кп дает в цель Калечение', default = false },		
@@ -2391,7 +2390,7 @@ local settings = {
 		    { type = 'rule' },
 		    { type = 'header', text = "                                     Usefull stuff." },
 			{ key = 'Felroci', type = 'checkbox', text = 'Ferocious Bite only if 50 or more energy', desc = '', default = true },
-			{ key = 'Rake_AOE', type = 'checkbox', text = 'Rake AOE', desc = 'Use Rake to AOE' },
+			--{ key = 'Rake_AOE', type = 'checkbox', text = 'Rake AOE', desc = 'Use Rake to AOE' },
 			{ key = 'usetrinkets', type = 'checkbox', text = 'Auto Trinkets', desc = 'If u had ofc.', default = true },
 			{ key = 'flex', type = 'checkbox', text = 'Meld = Do Rake', desc = 'ONLY NIGHT ELF. Do meld then rake.', default = false },
 			{ key = 'flex2', type = 'checkbox', text = 'Maim', desc = 'Only for pvp, if target had Rake and player has 5KP do Maim', default = false },		
